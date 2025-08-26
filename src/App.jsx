@@ -15,7 +15,7 @@ import RandomUser from './RandomUser';
 
 function App() {
   const [test, setTest] = useState();
-  const [showRandomUser, setShowRandomUser] = useState(false);
+  
 
   useEffect(() => {
     axiosInstance.get("/test")
@@ -26,9 +26,7 @@ function App() {
       })
   }, []);
 
-  const handleShowRandomUser = () => {
-    setShowRandomUser(true);
-  };
+
 
   return (
     <>
@@ -43,6 +41,7 @@ function App() {
         <Route path='/post' element={<Post />} />
         <Route path='/unnamed/:id' element={<UnnamedDetail />} />
         <Route path='/post/:id' element={<PostDetail />} />
+        <Route path='/randomuser' element={<RandomUser />} />
       </Routes>
     </>
   )

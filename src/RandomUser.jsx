@@ -54,6 +54,16 @@ export default function RandomUser() {
   return (
     <div style={{ padding: '2rem', textAlign: 'center' }}>
       <h2>랜덤 유저 뽑기 (더미데이터)</h2>
+       {selected && (
+        <motion.div
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ type: 'spring', stiffness: 200, damping: 10 }}
+          style={{ marginTop: '2rem', fontSize: '1.5rem', fontWeight: 'bold', color: 'green' }}
+        >
+          🎉 당첨: {selected.name} 🎉
+        </motion.div>
+      )}
       <div style={{
         display: 'grid',
         gridTemplateColumns: 'repeat(4, 1fr)',
@@ -115,16 +125,7 @@ export default function RandomUser() {
         랜덤 뽑기
       </button>
 
-      {selected && (
-        <motion.div
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ type: 'spring', stiffness: 200, damping: 10 }}
-          style={{ marginTop: '2rem', fontSize: '1.5rem', fontWeight: 'bold', color: 'green' }}
-        >
-          🎉 당첨: {selected.name} 🎉
-        </motion.div>
-      )}
+     
     </div>
   );
 }
