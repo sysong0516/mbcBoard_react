@@ -6,6 +6,8 @@ import MainPage from './mainpage/MainPage';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import Header from './mainpage/Header';
+import Unnamed from './components/Unnamed';
+import Post from './components/Post';
 
 function App() {
   const [test,setTest] = useState();
@@ -28,6 +30,8 @@ function App() {
         <Route path='/' element={<MainPage />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Signup />} />
+        <Route path='/unnamed' element={<Unnamed />} />
+        <Route path='/post' element={<Post />} />
       </Routes>
     </>
   )

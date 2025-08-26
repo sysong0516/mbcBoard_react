@@ -7,7 +7,7 @@ const UseNavi = () => {
     navigate('/')
   }
 
-  const goTo = () => {
+  const goTo = (path) => {
     navigate(path)
   }
 

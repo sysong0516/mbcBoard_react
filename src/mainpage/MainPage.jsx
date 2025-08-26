@@ -1,12 +1,14 @@
-import Post from "../maincomponents/Post";
-import Unnamed from "../maincomponents/Unnamed";
+import UnamedPost from "../maincomponents/UnamedPost";
+
 
 const MainPage = ( ) => {
+  
   return(
-    <>
-      <Unnamed />
-      <Post />
-    </>
+    <div>
+      <button>뽑기</button>
+      <UnamedPost />
+      
+    </div>
   )
 }
 

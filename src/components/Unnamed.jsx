@@ -2,6 +2,7 @@ import { faPen } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Unnamed = () => {
+  
   return(
     <div>
       <h3>익명 게시판</h3>
