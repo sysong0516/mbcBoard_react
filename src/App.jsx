@@ -8,6 +8,8 @@ import Signup from './components/Signup';
 import Header from './mainpage/Header';
 import Unnamed from './components/Unnamed';
 import Post from './components/Post';
+import UnnamedDetail from './Boardcomponents/UnnamedDetail';
+import PostDetail from './Boardcomponents/PostDetail';
 
 function App() {
   const [test,setTest] = useState();
@@ -32,6 +34,8 @@ function App() {
         <Route path='/signup' element={<Signup />} />
         <Route path='/unnamed' element={<Unnamed />} />
         <Route path='/post' element={<Post />} />
+        <Route path='/unnamed/:id' element={<UnnamedDetail />} />
+        <Route path='/post/:id' element={<PostDetail />} />
       </Routes>
     </>
   )
