@@ -29,21 +29,24 @@ function App() {
 
 
   return (
-    <>
-      <h1>{test}</h1> 
+    <div className="app-bg">
       <Header />
-
-      <Routes>
-        <Route path='/' element={<MainPage />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/signup' element={<Signup />} />
-        <Route path='/unnamed' element={<Unnamed />} />
-        <Route path='/post' element={<Post />} />
-        <Route path='/unnamed/:id' element={<UnnamedDetail />} />
-        <Route path='/post/:id' element={<PostDetail />} />
-        <Route path='/randomuser' element={<RandomUser />} />
+      <div className="app-container">
+        <div className="app-card">
+          <h1 className="app-title">{test }</h1>
+          <Routes>
+            <Route path='/' element={<MainPage />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/signup' element={<Signup />} />
+            <Route path='/unnamed' element={<Unnamed />} />
+            <Route path='/post' element={<Post />} />
+            <Route path='/unnamed/:id' element={<UnnamedDetail />} />
+            <Route path='/post/:id' element={<PostDetail />} />
+            <Route path='/randomuser' element={<RandomUser />} />
       </Routes>
-    </>
+        </div>
+      </div>
+    </div>
   )
 }
 

@@ -1,0 +1,19 @@
+.header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(186, 208, 255);
+  padding: 2vh;
+}
+
+.logo{
+  padding-right: 20px;
+}
+
+.home{
+  padding-left: 20px;
+
+}
+
+
+
