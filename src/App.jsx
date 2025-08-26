@@ -11,7 +11,7 @@ import Post from './components/Post';
 import UnnamedDetail from './Boardcomponents/UnnamedDetail';
 import PostDetail from './Boardcomponents/PostDetail';
 
-import RandomUser from './RandomUser';
+import RandomUser from './components/RandomUser';
 
 function App() {
   const [test, setTest] = useState();
