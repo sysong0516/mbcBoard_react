@@ -11,8 +11,11 @@ import Post from './components/Post';
 import UnnamedDetail from './Boardcomponents/UnnamedDetail';
 import PostDetail from './Boardcomponents/PostDetail';
 
+import RandomUser from './components/RandomUser';
+
 function App() {
   const [test, setTest] = useState();
+  
 
   useEffect(() => {
     axiosInstance.get("/test")
@@ -21,7 +24,9 @@ function App() {
       }).catch(error => {
         console.log(error)
       })
-  }, [])
+  }, []);
+
+
 
   return (
     <div className="app-bg">
@@ -37,7 +42,8 @@ function App() {
             <Route path='/post' element={<Post />} />
             <Route path='/unnamed/:id' element={<UnnamedDetail />} />
             <Route path='/post/:id' element={<PostDetail />} />
-          </Routes>
+            <Route path='/randomuser' element={<RandomUser />} />
+      </Routes>
         </div>
       </div>
     </div>
