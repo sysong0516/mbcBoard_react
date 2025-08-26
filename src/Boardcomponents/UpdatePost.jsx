@@ -1,4 +1,4 @@
-const UpdateBoard = () => {
+const UpdatePost = () => {
   return(
     <div>
       <label for="title">제목&nbsp;&nbsp;</label>
@@ -12,4 +12,4 @@ const UpdateBoard = () => {
   )
 }
 
-export default UpdateBoard;
+export default UpdatePost;

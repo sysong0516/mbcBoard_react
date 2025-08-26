@@ -12,4 +12,4 @@ const UnnamedBoard = () => {
   )
 }
 
-export default UnnamedBoard
+export default UnnamedBoard;

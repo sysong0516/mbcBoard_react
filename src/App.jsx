@@ -12,6 +12,10 @@ import UnnamedDetail from './Boardcomponents/UnnamedDetail';
 import PostDetail from './Boardcomponents/PostDetail';
 
 import RandomUser from './RandomUser';
+import UnnamedBoard from './Boardcomponents/UnnamedBoard';
+import PostBoard from './Boardcomponents/PostBoard';
+import UpdateBoard from './Boardcomponents/UpdateBoard';
+import UpdatePost from './Boardcomponents/UpdatePost';
 
 function App() {
   const [test, setTest] = useState();
@@ -42,6 +46,10 @@ function App() {
         <Route path='/unnamed/:id' element={<UnnamedDetail />} />
         <Route path='/post/:id' element={<PostDetail />} />
         <Route path='/randomuser' element={<RandomUser />} />
+        <Route path='/unnamed/write' element={<UnnamedBoard />} />
+        <Route path='/post/write' element={<PostBoard />} />
+        <Route path='/unnamed/modify' element={<UpdateBoard />} />
+        <Route path='/post/modify' element={<UpdatePost />} />
       </Routes>
     </>
   )

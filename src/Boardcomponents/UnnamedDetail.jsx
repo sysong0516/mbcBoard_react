@@ -1,11 +1,16 @@
+import UseNavi from "../UseNavi";
+
 const UnnamedDetail = () => {
+  const {goTo} = UseNavi();
   return(
     <div>
       <p>제목</p>
       <hr />
       <p>내용</p>
       <div>
-        <button>수정</button>
+        <button onClick={() =>  {
+          goTo('/unnamed/modify')
+        }}>수정</button>
         <button>삭제</button>
       </div>
       <hr />
