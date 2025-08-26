@@ -1,6 +1,11 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import axiosInstance from './axiosInstance';
+import { Route, Routes } from 'react-router-dom';
+import MainPage from './mainpage/MainPage';
+import Login from './components/Login';
+import Signup from './components/Signup';
+import Header from './mainpage/Header';
 
 function App() {
   const [test,setTest] = useState();
@@ -16,8 +21,14 @@ function App() {
 
   return (
     <>
-      <h1>{test}</h1>
-      
+      <h1>{test}</h1> 
+      <Header />
+
+      <Routes>
+        <Route path='/' element={<MainPage />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/signup' element={<Signup />} />
+      </Routes>
     </>
   )
 }
