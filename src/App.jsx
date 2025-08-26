@@ -11,7 +11,7 @@ import Post from './components/Post';
 import UnnamedDetail from './Boardcomponents/UnnamedDetail';
 import PostDetail from './Boardcomponents/PostDetail';
 
-import RandomUser from './RandomUser';
+import RandomUser from './components/RandomUser';
 import UnnamedBoard from './Boardcomponents/UnnamedBoard';
 import PostBoard from './Boardcomponents/PostBoard';
 import UpdateBoard from './Boardcomponents/UpdateBoard';
@@ -33,25 +33,28 @@ function App() {
 
 
   return (
-    <>
-      <h1>{test}</h1> 
+    <div className="app-bg">
       <Header />
-
-      <Routes>
-        <Route path='/' element={<MainPage />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/signup' element={<Signup />} />
-        <Route path='/unnamed' element={<Unnamed />} />
-        <Route path='/post' element={<Post />} />
-        <Route path='/unnamed/:id' element={<UnnamedDetail />} />
-        <Route path='/post/:id' element={<PostDetail />} />
-        <Route path='/randomuser' element={<RandomUser />} />
-        <Route path='/unnamed/write' element={<UnnamedBoard />} />
-        <Route path='/post/write' element={<PostBoard />} />
-        <Route path='/unnamed/modify' element={<UpdateBoard />} />
-        <Route path='/post/modify' element={<UpdatePost />} />
-      </Routes>
-    </>
+      <div className="app-container">
+        <div className="app-card">
+          <h1 className="app-title">{test }</h1>
+          <Routes>
+            <Route path='/' element={<MainPage />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/signup' element={<Signup />} />
+            <Route path='/unnamed' element={<Unnamed />} />
+            <Route path='/post' element={<Post />} />
+            <Route path='/unnamed/:id' element={<UnnamedDetail />} />
+            <Route path='/post/:id' element={<PostDetail />} />
+            <Route path='/randomuser' element={<RandomUser />} />
+            <Route path='/unnamed/write' element={<UnnamedBoard />} />
+            <Route path='/post/write' element={<PostBoard />} />
+            <Route path='/unnamed/modify' element={<UpdateBoard />} />
+            <Route path='/post/modify' element={<UpdatePost />} />
+          </Routes>
+        </div>
+      </div>
+    </div>
   )
 }
 
