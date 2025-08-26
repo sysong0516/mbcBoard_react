@@ -1,7 +1,10 @@
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import UseNavi from "../UseNavi";
 
 const Post = () => {
+  const {goTo} = UseNavi();
+
   return(
     <div>
       <h3>공부 게시판</h3>
@@ -19,7 +22,9 @@ const Post = () => {
           </tr>
         </tbody>
       </table>
-      <button><FontAwesomeIcon icon={faPen} />&nbsp;|&nbsp;쓰기</button>
+      <button onClick={() => {
+        goTo('/post/write')
+      }}><FontAwesomeIcon icon={faPen} />&nbsp;|&nbsp;쓰기</button>
       <br />
       <button>&laquo;</button>
       <button>&lt;</button>

@@ -1,7 +1,9 @@
+import './Login.css'
+
 const Login = () => {
   return(
     <div>
-      <div>
+      <div className="Login">
         <label for="username">아이디&nbsp;&nbsp;</label>
         <input type="text" name="username"></input> <br />
         <label for="password">비밀번호&nbsp;&nbsp;</label>

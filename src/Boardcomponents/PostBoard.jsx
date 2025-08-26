@@ -12,4 +12,4 @@ const PostBoard = () => {
   )
 }
 
-export default PostBoard
+export default PostBoard;
