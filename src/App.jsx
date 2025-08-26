@@ -5,22 +5,31 @@ import axiosInstance from './axiosInstance';
 import RandomUser from './RandomUser';
 
 function App() {
-  // const [test,setTest] = useState();
+  const [test, setTest] = useState();
+  const [showRandomUser, setShowRandomUser] = useState(false);
 
-  // useEffect(() => {
-  //   axiosInstance.get("/test")
-  //    .then(response => {
-  //     setTest(response.data)
-  //    }).catch(error => {
-  //     console.log(error)
-  //    })
-  // },[])
+  useEffect(() => {
+    axiosInstance.get("/test")
+      .then(response => {
+        setTest(response.data)
+      }).catch(error => {
+        console.log(error)
+      })
+  }, []);
+
+  const handleShowRandomUser = () => {
+    setShowRandomUser(true);
+  };
 
   return (
-      <div>
-        <RandomUser />
-      </div>
-  )
+    <div>
+     
+      {!showRandomUser && (
+        <button onClick={handleShowRandomUser}>당첨자 뽑기</button>
+      )}
+      {showRandomUser && <RandomUser />}
+    </div>
+  );
 }
 
 export default App
