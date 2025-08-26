@@ -23,7 +23,7 @@ function App() {
 
   return (
     <div>
-     
+      <h1>{test}</h1>
       {!showRandomUser && (
         <button onClick={handleShowRandomUser}>당첨자 뽑기</button>
       )}
