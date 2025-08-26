@@ -1,11 +1,12 @@
 import UnamedPost from "../maincomponents/UnamedPost";
-
+import UseNavi from "../UseNavi";
 
 const MainPage = ( ) => {
-  
+  const {goTo} = UseNavi();
+
   return(
     <div>
-      <button>뽑기</button>
+    <button onClick={() => goTo('/randomuser')}>뽑기</button>
       <UnamedPost />
       
     </div>
