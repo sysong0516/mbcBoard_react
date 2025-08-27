@@ -19,6 +19,7 @@ import UpdatePost from './Boardcomponents/UpdatePost';
 import Footer from './mainpage/Footer';
 import Terms from './maincomponents/Terms';
 import Privacy from './maincomponents/Privacy';
+import Message from './components/Message';
 
 function App() {
   const [test, setTest] = useState();
@@ -55,6 +56,7 @@ function App() {
             <Route path='/post/modify/:id' element={<UpdatePost />} />
             <Route path='/privacy' element={<Privacy />} />
             <Route path='/terms' element={<Terms />} /> 
+            <Route path='/message' element={<Message/>}/>
           </Routes>
         </div>
       </div>
