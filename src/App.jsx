@@ -50,7 +50,7 @@ function App() {
             <Route path='/unnamed/write' element={<UnnamedBoard />} />
             <Route path='/post/write' element={<PostBoard />} />
             <Route path='/unnamed/modify' element={<UpdateBoard />} />
-            <Route path='/post/modify' element={<UpdatePost />} />
+            <Route path='/post/modify/:id' element={<UpdatePost />} />
           </Routes>
         </div>
       </div>
