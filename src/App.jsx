@@ -23,6 +23,7 @@ import Privacy from './maincomponents/Privacy';
 
 function App() {
   const [test, setTest] = useState();
+  const [auth, setAuth] = useState(false);
  
   const location = useLocation();
   
@@ -46,7 +47,7 @@ function App() {
           {/* <h1 className="app-title">{test }</h1> */}
           <Routes>
             <Route path='/' element={<MainPage />} />
-            <Route path='/login' element={<Login />} />
+            <Route path='/login' element={<Login setAuth={setAuth} />} />
             <Route path='/signup' element={<Signup />} />
             <Route path='/unnamed' element={<Unnamed />} />
             <Route path='/post' element={<Post />} />
