@@ -1,0 +1,27 @@
+.postdetail-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  margin: 12px 0;
+}
+/* PostDetail 중앙 정렬 및 카드 스타일 */
+.postdetail-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+}
+
+.postdetail-card {
+  background: #fff6fa;
+  border-radius: 18px;
+  box-shadow: 0 4px 16px rgba(220, 120, 180, 0.12);
+  padding: 32px 24px;
+  width: 720px;
+  max-width: 95vw;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
