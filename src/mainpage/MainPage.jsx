@@ -1,14 +1,16 @@
 import UnamedPost from "../maincomponents/UnamedPost";
 import UseNavi from "../UseNavi";
+import Footer from "./Footer";
 
 const MainPage = ( ) => {
   const {goTo} = UseNavi();
 
   return(
     <div>
-    <button onClick={() => goTo('/randomuser')}>뽑기</button>
       <UnamedPost />
-      
+        <button onClick={() => goTo('/randomuser')}>추첨</button>
+      <Footer />
+
     </div>
   )
 }
