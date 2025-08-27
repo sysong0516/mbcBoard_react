@@ -1,13 +1,13 @@
 import UseNavi from "../UseNavi";
 
-const UnamedPost = () => {
+const PostMain = () =>  {
   const {goTo} = UseNavi();
   return(
     <div>
-      <div className="unnamed">
-        <h2>익명 게시판</h2>
+      <div className="post">
+        <h2>공부 게시판</h2>
         <button onClick={() => {
-          goTo('/unnamed')
+          goTo('/post')
         }}>더보기&gt;</button>
         <table>
           <thead>
@@ -18,14 +18,14 @@ const UnamedPost = () => {
           </thead>
           <tbody>
             <tr>
-              <td>5</td>
-              <td>ㅎㅎㅎ</td>
+              <td>3</td>
+              <td>ㅋㅋㅋ</td>
             </tr>
           </tbody>
         </table>
-      </div>    
+      </div>
     </div>
   )
 }
 
-export default UnamedPost;
+export default PostMain;

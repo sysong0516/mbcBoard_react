@@ -10,7 +10,7 @@ const Header = () => {
     <Link to="/"><FontAwesomeIcon icon={faHouse} size="3vh"/>Pink 천국</Link>
   <nav className="nav">
     
-    <Link to="/">게시판</Link>
+    <Link to="/post">게시판</Link>
     <Link to="/">인기글</Link>
     <Link to="/login">로그인</Link>
     <Link to="/signup">회원가입</Link>

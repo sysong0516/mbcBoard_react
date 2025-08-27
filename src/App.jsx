@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom';
 import './App.css'
 import axiosInstance from './axiosInstance';
 import { Route, Routes } from 'react-router-dom';
@@ -16,10 +17,16 @@ import UnnamedBoard from './Boardcomponents/UnnamedBoard';
 import PostBoard from './Boardcomponents/PostBoard';
 
 import UpdatePost from './Boardcomponents/UpdatePost';
+import Footer from './mainpage/Footer';
+import Terms from './maincomponents/Terms';
+import Privacy from './maincomponents/Privacy';
 
 function App() {
   const [test, setTest] = useState();
   const [auth, setAuth] = useState(false);
+ 
+  const location = useLocation();
+  
 
   useEffect(() => {
     axiosInstance.get("/test")
@@ -49,11 +56,13 @@ function App() {
             <Route path='/randomuser' element={<RandomUser />} />
             <Route path='/unnamed/write' element={<UnnamedBoard />} />
             <Route path='/post/write' element={<PostBoard />} />
-        
-            <Route path='/post/modify' element={<UpdatePost />} />
+            <Route path='/post/modify/:id' element={<UpdatePost />} />
+            <Route path='/privacy' element={<Privacy />} />
+            <Route path='/terms' element={<Terms />} /> 
           </Routes>
         </div>
       </div>
+      {location.pathname === "/" && <Footer />}
     </div>
   )
 }
