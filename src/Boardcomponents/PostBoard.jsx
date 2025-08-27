@@ -1,12 +1,37 @@
+import { useState } from "react";
+import axiosInstance from "../axiosInstance";
+import UseNavi from "../UseNavi";
+
 const PostBoard = () => {
+  const {goTo} = UseNavi();
+  const {post,setPost} = useState({
+      'title': '',
+      'content' : ''
+  });
+
+  const onChangeHandler = (e) => {
+    setPost({
+      ...post,
+      [e.target.name] : e.target.value
+    })
+  };
+
   return(
     <div>
       <label for="title">제목&nbsp;&nbsp;</label>
-      <input type="text" name="title"></input> <br />
+      <input type="text" name="title"  onChange={onChangeHandler}/> <br />
       <label for="title">내용&nbsp;&nbsp;</label>
-      <textarea />
+      <textarea name="content" onChange={onChangeHandler} />
       <div>
-        <button>등록</button>
+        <button onClick={() => {
+          axiosInstance.post('/post/write', post)
+            .then(response => {
+              alert(response.data)
+              goTo('/post')
+            }).catch(error => {
+              console.error(error)
+            })
+        }}>등록</button>
       </div>
     </div>
   )

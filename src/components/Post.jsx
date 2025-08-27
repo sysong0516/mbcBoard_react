@@ -31,6 +31,16 @@ const Post = () => {
       <button>1</button>
       <button>&gt;</button>
       <button>&raquo;</button>
+      <form>
+        <select name="search">
+          <option value="title">제목</option>
+          <option value="content">내용</option>
+          <option value="username">작성자</option>
+        </select>
+        <input type="search" placeholder="검색어를 입력해주세요" />
+        <button type="submit">검색</button>
+      </form>
+
     </div>
   )
 }

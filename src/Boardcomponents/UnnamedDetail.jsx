@@ -4,13 +4,10 @@ const UnnamedDetail = () => {
   const {goTo} = UseNavi();
   return(
     <div>
-      <p>제목</p>
+      <h3>제목</h3>
       <hr />
       <p>내용</p>
       <div>
-        <button onClick={() =>  {
-          goTo('/unnamed/modify')
-        }}>수정</button>
         <button>삭제</button>
       </div>
       <hr />

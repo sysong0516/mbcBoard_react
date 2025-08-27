@@ -5,12 +5,12 @@ const PostDetail = () => {
 
   return(
     <div>
-      <p>제목</p>
+      <h3>제목</h3>
       <hr />
       <p>내용</p>
       <div>
         <button onClick={() => {
-          goTo('/post/modify')
+          goTo('/post/modify/:id')
         }}>수정</button>
         <button>삭제</button>
       </div>
