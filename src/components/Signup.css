@@ -1,0 +1,75 @@
+/* 전체 배경 */
+.signup-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #ffc1cc 60%, #b7eaff 100%);
+  font-family: "Noto Sans KR", sans-serif;
+  backdrop-filter: blur(8px);
+}
+
+/* 회원가입 박스 */
+.signup-box {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 40px 30px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  width: 420px;
+  text-align: center;
+  position: relative;
+}
+
+/* 상단 아바타 원형 */
+.signup-avatar {
+  width: 70px;
+  height: 70px;
+  background: #de89ce;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28px;
+  color: #fff;
+  position: absolute;
+  top: -35px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.signup-box h2 {
+  margin-top: 50px;
+}
+
+.signup-box label {
+  display: block;
+  margin: 20px 0 5px 0;
+  font-weight: 500;
+  color: #555;
+}
+
+.signup-box input {
+  width: 90%;
+  padding: 10px;
+  margin-bottom: 30px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.signup-box button {
+  width: 100%;
+  padding: 12px;
+  background: #de89ce;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.signup-box button:hover {
+  background: #c76bbf;
+}

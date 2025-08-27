@@ -14,8 +14,11 @@ import PostDetail from './Boardcomponents/PostDetail';
 import RandomUser from './components/RandomUser';
 import UnnamedBoard from './Boardcomponents/UnnamedBoard';
 import PostBoard from './Boardcomponents/PostBoard';
-import UpdateBoard from './Boardcomponents/UpdateBoard';
+
 import UpdatePost from './Boardcomponents/UpdatePost';
+import Footer from './mainpage/Footer';
+import Terms from './maincomponents/Terms';
+import Privacy from './maincomponents/Privacy';
 
 function App() {
   const [test, setTest] = useState();
@@ -37,7 +40,7 @@ function App() {
       <Header />
       <div className="app-container">
         <div className="app-card">
-          <h1 className="app-title">{test }</h1>
+          {/* <h1 className="app-title">{test }</h1> */}
           <Routes>
             <Route path='/' element={<MainPage />} />
             <Route path='/login' element={<Login />} />
@@ -49,11 +52,13 @@ function App() {
             <Route path='/randomuser' element={<RandomUser />} />
             <Route path='/unnamed/write' element={<UnnamedBoard />} />
             <Route path='/post/write' element={<PostBoard />} />
-            <Route path='/unnamed/modify' element={<UpdateBoard />} />
             <Route path='/post/modify/:id' element={<UpdatePost />} />
+            <Route path='/privacy' element={<Privacy />} />
+            <Route path='/terms' element={<Terms />} /> 
           </Routes>
         </div>
       </div>
+      <Footer />
     </div>
   )
 }
