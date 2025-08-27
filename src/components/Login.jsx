@@ -3,7 +3,7 @@ import './Login.css'
 import axiosInstance from "../axiosInstance";
 import UseNavi from "../UseNavi";
 
-const Login = () => {
+const Login = ({ setAuth }) => {
   const [member, setMember] = useState({
     username: "",
     password: "",
@@ -40,14 +40,22 @@ const Login = () => {
             </label>
 
           </div>
-          <button type="submit" className="login-btn" onClick={() => {
+          <button type="submit" className="login-btn" onClick={(e) => {
+            e.preventDefault();
             axiosInstance.post("/login", member)
               .then(response => {
-                console.log(response.data);
-                goIndex();
+                const jwt = response.headers.authorization; // response에서 jwt 토큰을 가져옴
+
+                if (jwt != null) {
+                  sessionStorage.setItem('jwt', jwt); // sessionStorage에 jwt 토큰 저장
+                  setAuth(true)
+                  alert("로그인 성공");
+                  goIndex();
+                }
+
               }).catch(error => {
-                console.log(error);
-              });
+                console.error(error);
+              })
           }}>로그인</button>
         </form>
       </div>
