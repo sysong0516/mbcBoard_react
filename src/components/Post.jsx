@@ -37,8 +37,8 @@ const Post = () => {
           <option value="content">내용</option>
           <option value="username">작성자</option>
         </select>
-        <input type="search" placeholder="검색어를 입력해주세요" />
-        <button type="submit">검색</button>
+        <input type="text" placeholder="검색어를 입력하세요" />
+        <input type="submit" value="검색" />
       </form>
 
     </div>
