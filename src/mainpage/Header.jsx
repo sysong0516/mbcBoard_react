@@ -5,17 +5,23 @@ import './Header.css';
 
 const Header = () => {
   return(
-    <div className="header">
-      <div className="home">
-        <Link to="/"><FontAwesomeIcon icon={faHouse} size="3vh"/></Link>
-      </div>
-
-      <div className="logo"> 
-        <Link to="/login">로그인</Link>
-        <Link to="/signup">회원가입</Link>
-      </div>
-    </div>
+  
+  <header className="header">
+    <Link to="/"><FontAwesomeIcon icon={faHouse} size="3vh"/>Pink 천국</Link>
+  <nav className="nav">
+    
+    <Link to="/">게시판</Link>
+    <Link to="/">인기글</Link>
+    <Link to="/login">로그인</Link>
+    <Link to="/signup">회원가입</Link>
+  </nav>
+  </header>
+    
+    
   )
 }
+
+
+
 
 export default Header;

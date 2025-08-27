@@ -1,6 +1,6 @@
 /* 파일: d:\hsy\mbc\mbcBoard_react\src\App.css */
 
-.app-bg {
+/* .app-bg {
   min-height: 100vh;
   background: linear-gradient(135deg, #e0e7ff 0%, #f8fafc 100%);
   padding: 0;
@@ -30,5 +30,10 @@
   font-weight: 700;
   color: #6366f1;
   margin-bottom: 24px;
+} */
+body {
+  margin: 0;
+  font-family: "Noto Sans KR", sans-serif;
+  background-color: #fff5f7;
+  color: #333;
 }
-

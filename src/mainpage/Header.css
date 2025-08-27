@@ -1,4 +1,4 @@
-.header{
+/* .header{
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -13,7 +13,29 @@
 .home{
   padding-left: 20px;
 
+} */
+
+/* Header */
+.header {
+  background: #ffc1cc;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #eddbf4;
 }
 
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.nav a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: 500;
+}
 
 
