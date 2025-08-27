@@ -3,21 +3,29 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import './Header.css';
 
-const Header = () => {
+const Header = ({ auth, setAuth }) => {
+  // 로그인한 사용자 아이디를 sessionStorage에서 가져옴
+  const username = sessionStorage.getItem('username');
   return(
-  
-  <header className="header">
-    <Link to="/"><FontAwesomeIcon icon={faHouse} size="3vh"/>Pink 천국</Link>
-  <nav className="nav">
-    
-    <Link to="/post">게시판</Link>
-    <Link to="/">인기글</Link>
-    <Link to="/login">로그인</Link>
-    <Link to="/signup">회원가입</Link>
-  </nav>
-  </header>
-    
-    
+    <header className="header">
+      <Link to="/" className="logo"><FontAwesomeIcon icon={faHouse} size="3vh"/>Pink천국</Link>
+      <nav className="nav">
+        <Link to="/post">게시판</Link>
+        <Link to="/">인기글</Link>
+        <Link to="/">채팅</Link>
+        {auth ? (
+          <div className="header-auth">
+            <span className="header-welcome">{username ? `${username}님 환영합니다!` : '환영합니다!'}</span>
+            <button className="header-logout-btn" onClick={() => { setAuth(false); sessionStorage.removeItem('username'); sessionStorage.removeItem('jwt'); }}>로그아웃</button>
+          </div>
+        ) : (
+          <>
+            <Link to="/login">로그인</Link>
+            <Link to="/signup">회원가입</Link>
+          </>
+        )}
+      </nav>
+    </header>
   )
 }
 
