@@ -18,6 +18,14 @@
 	align-items: center;
 	gap: 8px;
 }
+	
+
+	.footer-buttons {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		gap: 8px;
+	}
 
 .footer button {
 	margin: 0 8px;

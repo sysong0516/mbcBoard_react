@@ -1,0 +1,58 @@
+/* Unnamed 화면 중앙 정렬 및 카드 스타일 */
+.unnamed-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+}
+
+.unnamed-card {
+  background: #fff6fa;
+  border-radius: 18px;
+  box-shadow: 0 4px 16px rgba(220, 120, 180, 0.12);
+  padding: 32px 24px;
+  width: 720px;
+  max-width: 95vw;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.unnamed-pagination {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.unnamed-card table {
+  width: 100%;
+  margin-bottom: 16px;
+  border-collapse: collapse;
+}
+.unnamed-card th, .unnamed-card td {
+  border-bottom: 1px solid #e0b7d7;
+  padding: 8px;
+  text-align: center;
+}
+.unnamed-card th {
+   background: #ffe4ec;
+  color: #b03060;
+}
+.unnamed-card button {
+  margin: 4px;
+  background: #b03060;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 16px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.unnamed-card button:hover {
+  background: #a02050;
+}

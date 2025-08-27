@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom';
 import './App.css'
 import axiosInstance from './axiosInstance';
 import { Route, Routes } from 'react-router-dom';
@@ -22,6 +23,8 @@ import Privacy from './maincomponents/Privacy';
 
 function App() {
   const [test, setTest] = useState();
+ 
+  const location = useLocation();
   
 
   useEffect(() => {
@@ -58,7 +61,7 @@ function App() {
           </Routes>
         </div>
       </div>
-      <Footer />
+      {location.pathname === "/" && <Footer />}
     </div>
   )
 }
