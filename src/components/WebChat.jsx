@@ -14,6 +14,7 @@ function WebChat() {
   const [inputMessage, setInputMessage] = useState("");
 
   useEffect(() => {
+
     const socket = new SockJS("http://localhost:8888/ws", null ,{
         withCredentials: true
     });
@@ -21,8 +22,9 @@ function WebChat() {
 
     console.log("웹소켓 연결 시도");
 
+    const jwt = sessionStorage.getItem('jwt');
     client.connect(
-      {},
+      { Authorization: jwt }, // JWT 토큰을 헤더로 포함
       () => {
         console.log("웹소켓 연결 성공");
         setStompClient(client);
