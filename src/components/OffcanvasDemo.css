@@ -1,0 +1,15 @@
+.offcanvas-btn {
+  background-color: #ff69b4; /* 핑크 */
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(220, 120, 180, 0.10);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.offcanvas-btn:hover {
+  background-color: #e75480; /* 진한 핑크 */
+}
