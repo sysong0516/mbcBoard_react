@@ -1,17 +1,35 @@
-import UseNavi from "../UseNavi";
+import { useParams } from "react-router-dom";
 import "./UnnamedDetail.css";
+import { useEffect, useState } from "react";
+import axiosInstance from "../axiosInstance";
 
 const UnnamedDetail = () => {
-  const {goTo} = UseNavi();
+  const [board, setBoard] = useState([]);
+  const {id} = useParams();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    axiosInstance.get(`/unnamed/${id}`)
+      .then(response => {
+        setBoard(response.data)
+      }).catch(error => {
+        console.log(error)
+      }).finally(() => {
+        setLoading(false)
+      })
+  },[])
+
+  if(loading)
+    return <h1>로딩중 입니다....</h1>
+  if(!board)
+    return <h1>존재하지 않는 게시물입니다.</h1>  
+
   return(
     <div className="unnameddetail-container">
       <div className="unnameddetail-card">
-        <h3>제목</h3>
+        <h3>{board.title}</h3>
         <hr />
-        <p>내용</p>
-        <div className="unnameddetail-buttons">
-          <button>삭제</button>
-        </div>
+        <p>{board.content}</p>
         <hr />
         <h5>댓글 목록</h5>
         <p>작성자</p>

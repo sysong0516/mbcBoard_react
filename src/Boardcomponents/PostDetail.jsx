@@ -13,7 +13,6 @@ const PostDetail = () => {
   useEffect(() => {
     axiosInstance.get(`/post/${id}`)
       .then(response => {
-        console.log(response.data)
         setPost(response.data)
       }).catch(error => {
         console.log(error)

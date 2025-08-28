@@ -17,7 +17,7 @@ const Post = () => {
   const size = 20;
 
   // 게시글 불러오기 함수
-  const PageList = (pageNum = 0) => {
+  const pageList = (pageNum = 0) => {
     const q = keyword.trim();
     const url = q ? "/search" :"/post";
     axiosInstance.get(url, {
@@ -37,7 +37,7 @@ const Post = () => {
   };
 
   useEffect(() => {
-    PageList(0);
+    pageList(0);
   }, [])
 
   const onSearchSubmit = (e) => {
