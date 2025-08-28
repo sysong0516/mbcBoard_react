@@ -1,3 +1,4 @@
+import OffcanvasDemo from "../components/OffcanvasDemo";
 import PostMain from "../maincomponents/PostMain";
 import UnamedPost from "../maincomponents/UnamedPost";
 import UseNavi from "../UseNavi";
@@ -15,6 +16,9 @@ const MainPage = ( ) => {
       </div>
       <div className="mainpage-card">
         <UnamedPost />
+      </div>
+      <div>
+       <OffcanvasDemo />
       </div>
       <button className="mainpage-btn" onClick={() => goTo('/randomuser')}>추첨</button>
     </div>
