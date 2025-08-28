@@ -52,7 +52,6 @@ const Login = ({ setAuth }) => {
                   alert("로그인 성공");
                   goIndex();
                 }
-
               }).catch(error => {
                 console.error(error);
               })

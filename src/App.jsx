@@ -20,23 +20,13 @@ import UpdatePost from './Boardcomponents/UpdatePost';
 import Footer from './mainpage/Footer';
 import Terms from './maincomponents/Terms';
 import Privacy from './maincomponents/Privacy';
+import ProtectedRoute from './ProtectedRoute';
 
 function App() {
   const [test, setTest] = useState();
-  const [auth, setAuth] = useState(false);
- 
+  const [auth, setAuth] = useState(sessionStorage.getItem("jwt") ? true : false);
+
   const location = useLocation();
-  
-
-  useEffect(() => {
-    axiosInstance.get("/test")
-      .then(response => {
-        setTest(response.data)
-      }).catch(error => {
-        console.log(error)
-      })
-  }, []);
-
 
 
   return (
@@ -50,15 +40,15 @@ function App() {
             <Route path='/login' element={<Login setAuth={setAuth} />} />
             <Route path='/signup' element={<Signup />} />
             <Route path='/unnamed' element={<Unnamed />} />
-            <Route path='/post' element={<Post />} />
+            <Route path='/post' element={<ProtectedRoute auth={auth}><Post /></ProtectedRoute>} />
             <Route path='/unnamed/:id' element={<UnnamedDetail />} />
-            <Route path='/post/:id' element={<PostDetail />} />
+            <Route path='/post/:id' element={<ProtectedRoute auth={auth}><PostDetail /></ProtectedRoute>} />
             <Route path='/randomuser' element={<RandomUser />} />
             <Route path='/unnamed/write' element={<UnnamedBoard />} />
-            <Route path='/post/write' element={<PostBoard />} />
-            <Route path='/post/modify/:id' element={<UpdatePost />} />
+            <Route path='/post/write' element={<ProtectedRoute auth={auth}><PostBoard /></ProtectedRoute>} />
+            <Route path='/post/modify/:id' element={<ProtectedRoute auth={auth}><UpdatePost /></ProtectedRoute>} />
             <Route path='/privacy' element={<Privacy />} />
-            <Route path='/terms' element={<Terms />} /> 
+            <Route path='/terms' element={<Terms />} />
           </Routes>
         </div>
       </div>
