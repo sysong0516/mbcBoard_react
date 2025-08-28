@@ -24,20 +24,9 @@ import ProtectedRoute from './ProtectedRoute';
 
 function App() {
   const [test, setTest] = useState();
-  const [auth, setAuth] = useState(false);
+  const [auth, setAuth] = useState(sessionStorage.getItem("jwt") ? true : false);
 
   const location = useLocation();
-
-
-  useEffect(() => {
-    axiosInstance.get("/test")
-      .then(response => {
-        setTest(response.data)
-      }).catch(error => {
-        console.log(error)
-      })
-  }, []);
-
 
 
   return (
