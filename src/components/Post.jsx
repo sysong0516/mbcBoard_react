@@ -3,9 +3,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import UseNavi from "../UseNavi";
 import "./Post.css";
 import { useEffect, useState } from "react";
-import axiosInstance from "../axiosInstance";
 import Pagination from "../btncomponents/Pagination";
 import { Link } from "react-router-dom";
+import axiosInstance from "../axiosInstance";
 
 const Post = () => {
   const {goTo} = UseNavi();
