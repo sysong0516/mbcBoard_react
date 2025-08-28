@@ -1,15 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "../axiosInstance";
 
 const WriteMessage = () => {
   const navigate = useNavigate();
-  const [to, setTo] = useState('');
-  const [content, setContent] = useState('');
+  const [to, setTo] = useState(''); // 받는 사람
+  const [content, setContent] = useState(''); // 메세지 내용
   const [error, setError] = useState();
   const [message, setMessage] = useState({
-    content : '',
-    writer : {username}
+    content : ''
+    
   })
+
 
   const handleSubmit = (e) => {
     e.preventDefault(); // 기본 동작 막기
@@ -21,9 +23,18 @@ const WriteMessage = () => {
 
     setError(''); // 에러 초기화
 
-    // API 요청 작성 가능
-    console.log('받는 사람:', to);
-    console.log('내용:', content);
+     axiosInstance.post('/message',{
+      receiver : to,
+      content: content,
+     })
+     .then(response => {
+      console.log(response.data)
+      console.log('JWT:', sessionStorage.getItem('jwt'));
+      setContent(response.data)    
+      }).catch(error => {
+        console.log(error)
+      })
+
 
     // 전송 완료 후 보낸 메시지 페이지로 이동
     navigate('/message/sentMessage');
