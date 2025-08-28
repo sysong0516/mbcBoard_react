@@ -21,6 +21,10 @@ import Footer from './mainpage/Footer';
 import Terms from './maincomponents/Terms';
 import Privacy from './maincomponents/Privacy';
 import Message from './components/Message';
+import Send from './message-components/SentMessage';
+import SentMessage from './message-components/SentMessage';
+import ReceivedMessage from './message-components/ReceivedMessage';
+import WriteMessage from './message-components/WriteMessage';
 
 function App() {
   const [test, setTest] = useState();
@@ -60,7 +64,13 @@ function App() {
             <Route path='/post/modify/:id' element={<UpdatePost />} />
             <Route path='/privacy' element={<Privacy />} />
             <Route path='/terms' element={<Terms />} /> 
-            <Route path='/message' element={<Message/>}/>
+
+            <Route path='/message' element={<Message/>}>
+              <Route path="write" element={<WriteMessage/>} />
+              <Route index element={<ReceivedMessage/>} />
+              <Route path="sentMessage" element={<SentMessage/>} />
+              <Route path="receivedMessage" element={<ReceivedMessage/>} />
+            </Route>
           </Routes>
         </div>
       </div>
