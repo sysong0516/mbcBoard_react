@@ -4,6 +4,8 @@ import UseNavi from "../UseNavi";
 import "./Post.css";
 import { useEffect, useState } from "react";
 import axiosInstance from "../axiosInstance";
+import Pagination from "../btncomponents/Pagination";
+import { Link } from "react-router-dom";
 
 const Post = () => {
   const {goTo} = UseNavi();
@@ -16,17 +18,19 @@ const Post = () => {
 
   // 게시글 불러오기 함수
   const PageList = (pageNum = 0) => {
-    axiosInstance.get('/search', {
+    const q = keyword.trim();
+    const url = q ? "/search" :"/post";
+    axiosInstance.get(url, {
       params: {
         type: searchType,
-        keyword: keyword,
+        keyword: q,
         page: pageNum,
         size: size
       }
     }).then(response => {
-      setPostList(response.data.content)
-      setPage(response.data.number);
-      setTotalPages(response.data.totalPages);
+      setPostList(response.data.content || [])
+      setPage(response.data.number ?? 0);
+      setTotalPages(response.data.totalPages ?? 0);
     }).catch(error => {
       console.error('게시글 목록 불러오기 실패: ', error);
     });
@@ -50,26 +54,35 @@ const Post = () => {
             <tr>
               <th>번호</th>
               <th>제목</th>
+              <th>작성자</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>ㅋㅋㅋㅋ</td>
-            </tr>
+            {postList.length > 0 ? (
+              postList.map((post,i) => {
+                return(
+                  <tr key={i}>
+                    <td>{post.id}</td>
+                    <td><Link to = {`/post/${post.id}`}>{post.title}</Link></td>
+                    <td>{post.user.username}</td>
+                  </tr>
+                );
+              })
+            ) : (
+              <tr>
+                <td colSpan="3">게시글이 없습니다.</td>
+              </tr>
+            )}
           </tbody>
         </table>
         <button onClick={() => {
           goTo('/post/write')
         }}><FontAwesomeIcon icon={faPen} />&nbsp;|&nbsp;쓰기</button>
         <br />
-        <div className="post-pagination">
-          <button>&laquo;</button>
-          <button>&lt;</button>
-          <button>1</button>
-          <button>&gt;</button>
-          <button>&raquo;</button>
-        </div>
+        <Pagination page={page}
+        totalPages={totalPages}
+        onPageChange={(newPage) => PageList(newPage)}
+        groupSize={10}/>
         <form onSubmit={onSearchSubmit}>
           <select 
               name="search"
@@ -86,7 +99,7 @@ const Post = () => {
             value={keyword} 
             onChange={(e => setKeyword(e.target.value))}
           />
-          <input type="submit" value="검색" />
+          <button type="submit">검색</button>
         </form>
       </div>
     </div>
