@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import './Header.css';
 
 const Header = ({ auth, setAuth }) => {
+
+  
   // 로그인한 사용자 아이디를 sessionStorage에서 가져옴
   const username = sessionStorage.getItem('username');
   return(
