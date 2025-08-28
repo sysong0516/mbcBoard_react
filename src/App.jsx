@@ -42,7 +42,7 @@ function App() {
 
   return (
     <div className="app-bg">
-      <Header />
+      <Header auth={auth} setAuth={setAuth} />
       <div className="app-container">
         <div className="app-card">
           {/* <h1 className="app-title">{test }</h1> */}
