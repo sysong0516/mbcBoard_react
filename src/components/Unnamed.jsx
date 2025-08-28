@@ -5,6 +5,7 @@ import "./Unnamed.css";
 
 const Unnamed = () => {
   const {goTo} = UseNavi();
+  const size = 20;
   return(
     <div className="unnamed-container">
       <div className="unnamed-card">
