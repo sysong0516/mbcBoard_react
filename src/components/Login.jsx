@@ -28,11 +28,11 @@ const Login = ({ setAuth }) => {
         <form>
           <div className="input-group">
             <i className="fas fa-envelope"></i>
-            <input type="text" placeholder="Email or ID" name="username" onChange={onChangeHandler} required />
+            <input type="text" placeholder="Email or ID" name="username" onChange={onChangeHandler} required autoComplete="off"/>
           </div>
           <div className="input-group">
             <i className="fas fa-lock"></i>
-            <input type="text" placeholder="Password" name="password" onChange={onChangeHandler} required />
+            <input type="password" placeholder="Password" name="password" onChange={onChangeHandler} required autoComplete="off" />
           </div>
           <div className="options">
             <label>
@@ -53,7 +53,7 @@ const Login = ({ setAuth }) => {
                   goIndex();
                 }
               }).catch(error => {
-                console.error(error);
+                alert('아이디와 비밀번호를 확인해주세요');
               })
           }}>로그인</button>
         </form>

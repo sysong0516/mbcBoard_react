@@ -20,21 +20,21 @@ function WebChat() {
     });
     const client = over(socket);
 
-    console.log("웹소켓 연결 시도");
+    // console.log("웹소켓 연결 시도");
 
     const jwt = sessionStorage.getItem('jwt');
     client.connect(
       { Authorization: jwt }, // JWT 토큰을 헤더로 포함
       () => {
-        console.log("웹소켓 연결 성공");
+        // console.log("웹소켓 연결 성공");
         setStompClient(client);
         client.subscribe("/sub/messages", (message) => {
-          console.log(message);
+          // console.log(message);
           setReceivedMessages((prev) => [...prev, message.body]);
         });
       },
       (error) => {
-        console.log("웹소켓 연결 실패", error);
+        // console.log("웹소켓 연결 실패", error);
       }
     );
   }, []);
@@ -49,7 +49,7 @@ function WebChat() {
   const endConnection = () => {
     if (stompClient) {
       stompClient.disconnect(() => {
-        console.log("웹소켓 연결 종료");
+        // console.log("웹소켓 연결 종료");
         setStompClient(null);
       });
     }
