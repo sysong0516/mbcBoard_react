@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../axiosInstance";
 
@@ -7,10 +7,6 @@ const WriteMessage = () => {
   const [to, setTo] = useState(''); // 받는 사람
   const [content, setContent] = useState(''); // 메세지 내용
   const [error, setError] = useState();
-  const [message, setMessage] = useState({
-    content : ''
-    
-  })
 
 
   const handleSubmit = (e) => {
@@ -24,12 +20,11 @@ const WriteMessage = () => {
     setError(''); // 에러 초기화
 
      axiosInstance.post('/message',{
-      receiver : to,
+      receiverName : to,
       content: content,
      })
      .then(response => {
       console.log(response.data)
-      console.log('JWT:', sessionStorage.getItem('jwt'));
       setContent(response.data)    
       }).catch(error => {
         console.log(error)
