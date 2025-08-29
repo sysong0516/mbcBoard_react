@@ -2,6 +2,10 @@ import { useParams } from "react-router-dom";
 import "./UnnamedDetail.css";
 import { useEffect, useState } from "react";
 import axiosInstance from "../axiosInstance";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faThumbsUp } from "@fortawesome/free-solid-svg-icons/faThumbsUp";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
+
 
 const UnnamedDetail = () => {
   const [board, setBoard] = useState([]);
@@ -28,8 +32,21 @@ const UnnamedDetail = () => {
     <div className="unnameddetail-container">
       <div className="unnameddetail-card">
         <h3>{board.title}</h3>
+        <span><FontAwesomeIcon icon={faEye} />&nbsp;{board.cnt}&nbsp;|
+          <span>&nbsp;<FontAwesomeIcon icon={faThumbsUp} />&nbsp;{board.likes}</span>
+        </span>
         <hr />
         <p>{board.content}</p>
+        <button onClick={() => {
+            axiosInstance.get(`/boardlike?id=${board.id}`)
+              .then(response => {
+                setBoard(response.data)
+              }).catch(error => {
+                console.log(error)
+              })
+          }}>
+          &nbsp;<FontAwesomeIcon icon={faThumbsUp} />
+        </button>
         <hr />
         <h5>댓글 목록</h5>
         <p>작성자</p>

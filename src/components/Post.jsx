@@ -42,7 +42,7 @@ const Post = () => {
 
   const onSearchSubmit = (e) => {
     e.preventDefault();
-    PageList(0);
+    pageList(0);
   }; 
 
   return(
@@ -81,7 +81,7 @@ const Post = () => {
         <br />
         <Pagination page={page}
         totalPages={totalPages}
-        onPageChange={(newPage) => PageList(newPage)}
+        onPageChange={(newPage) => pageList(newPage)}
         groupSize={10}/>
         <form onSubmit={onSearchSubmit}>
           <select 
