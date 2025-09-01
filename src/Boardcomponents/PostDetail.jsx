@@ -3,12 +3,19 @@ import UseNavi from "../UseNavi";
 import "./PostDetail.css";
 import { useParams } from "react-router-dom";
 import axiosInstance from "../axiosInstance";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faThumbsUp } from "@fortawesome/free-solid-svg-icons/faThumbsUp";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
 
 const PostDetail = () => {
   const { goTo } = UseNavi();
   const [post, setPost] = useState([]);
   const { id } = useParams();
   const [loading, setLoading] = useState(true);
+  const [isOwer, setIsOwer] = useState(false);
+
+  const [editingReplyId, setEditingReplyId] = useState(null); // 수정 중인 댓글 ID
+  const [editContent, setEditContent] = useState(""); // 수정 내용
 
   useEffect(() => {
     fetchPost(); // 처음 마운트될 때 데이터 불러오기
@@ -17,13 +24,23 @@ const PostDetail = () => {
   const fetchPost = async () => {
     axiosInstance.get(`/post/${id}`)
       .then(response => {
-        setPost(response.data);
-      })
-      .catch(error => {
-        console.error('게시글 불러오기 실패: ', error);
+        setPost(response.data.post)
+        setIsOwer(response.data.isOwer)
+      }).catch(error => {
+        console.log(error)
       }).finally(() => {
         setLoading(false)
       });
+  };
+
+  const handleEditClick = (reply) => {
+    setEditingReplyId(reply.id);
+    setEditContent(reply.content);
+  };
+
+  const handleCancel = () => {
+    setEditingReplyId(null);
+    setEditContent("");
   };
 
   if (loading)
@@ -35,13 +52,45 @@ const PostDetail = () => {
     <div className="postdetail-container">
       <div className="postdetail-card">
         <h3>{post.title}</h3>
+        <span>{post.user.username}&nbsp;|&nbsp;
+          <span>&nbsp;<FontAwesomeIcon icon={faEye} />&nbsp;{post.cnt}&nbsp;</span> |
+          <span>&nbsp;<FontAwesomeIcon icon={faThumbsUp} />&nbsp;{post.likes}</span>
+        </span>
         <hr />
         <p>{post.content}</p>
         <div className="postdetail-buttons">
+          {
+            isOwer
+              ?
+              <>
+                <button onClick={() => {
+                  goTo(`/post/modify/${id}`)
+                }}>수정</button>
+                <button onClick={() => {
+                  if (confirm('정말로 삭제하시겠습니까?')) {
+                    axiosInstance.delete(`/post?id=${post.id}`)
+                      .then(response => {
+                        alert(response.data)
+                        goTo('/post')
+                      }).catch(error => {
+                        alert('삭제 실패')
+                        console.log(error)
+                      });
+                  }
+                }}>삭제</button>
+              </>
+              : " "
+          }
           <button onClick={() => {
-            goTo('/post/modify/:id') //id 부분에 실제 id 값을 넣어야 함
-          }}>수정</button>
-          <button>삭제</button>
+            axiosInstance.get(`/postlike?id=${post.id}`)
+              .then(response => {
+                setPost(response.data)
+              }).catch(error => {
+                console.log(error)
+              })
+          }}>
+            &nbsp;<FontAwesomeIcon icon={faThumbsUp} />
+          </button>
         </div>
         <hr />
         <h5>댓글 목록</h5>
@@ -50,8 +99,31 @@ const PostDetail = () => {
             <div key={i} className="postdetail-reply">
               <p>{reply.user.username}</p>
               <p>-</p>
-              <p>{reply.content}</p>
-              <button>수정</button>
+              {editingReplyId === reply.id ? (
+                <>
+                  <textarea
+                    value={editContent}
+                    onChange={(e) => setEditContent(e.target.value)} />
+                  <button onClick={() => {
+                    reply.content = document.querySelector('textarea').value
+                    reply.id = editingReplyId
+                    axiosInstance.put(`/reply/${id}`, reply)
+                      .then(response => {
+                        alert(response.data);
+                        fetchPost();
+                      }).catch(error => {
+                        console.log(error)
+                      })
+                    setEditingReplyId(null);
+                    setEditContent("");
+                  }}>저장</button>
+                  <button onClick={handleCancel}>취소</button>
+                </>
+              ) : (
+                <><p>{reply.content}</p>
+                  <button onClick={() => handleEditClick(reply)}>수정</button>
+                </>
+              )}
               <button>삭제</button>
             </div>
           ))
