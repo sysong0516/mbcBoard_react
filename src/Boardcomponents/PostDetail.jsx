@@ -12,12 +12,13 @@ const PostDetail = () => {
   const [post, setPost] = useState([]);
   const {id} = useParams();
   const [loading, setLoading] = useState(true);
-
+  const [isOwer,setIsOwer] = useState(false);
   
   useEffect(() => {
     axiosInstance.get(`/post/${id}`)
       .then(response => {
-        setPost(response.data)
+        setPost(response.data.post)
+        setIsOwer(response.data.isOwer)
       }).catch(error => {
         console.log(error)
       }).finally(() => {
@@ -41,20 +42,28 @@ const PostDetail = () => {
         <hr />
         <p>{post.content}</p>
         <div className="postdetail-buttons">
-          <button onClick={() => {
-            goTo(`/post/modify/${id}`) //id 부분에 실제 id 값을 넣어야 함
-          }}>수정</button>
-          <button onClick={() => {
-            axiosInstance.delete(`/post?id=${post.id}`)
-              .then(response => {
-                confirm('정말로 삭제하시겠습니까?');
-                alert(response.data)
-                goTo('/post')
-              }).catch(error =>{
-                alert('삭제 실패')
-                console.log(error)
-              })
-          }}>삭제</button>
+          {
+          isOwer 
+          ? 
+          <>
+            <button onClick={() => {
+                goTo(`/post/modify/${id}`)
+              }}>수정</button>
+              <button onClick={() => {
+                if(confirm('정말로 삭제하시겠습니까?')) {
+                  axiosInstance.delete(`/post?id=${post.id}`)
+                    .then(response => {
+                      alert(response.data)
+                      goTo('/post')
+                    }).catch(error =>{
+                      alert('삭제 실패')
+                      console.log(error)
+                    });
+                }
+              }}>삭제</button>
+           </> 
+          : " "
+          }
           <button onClick={() => {
             axiosInstance.get(`/postlike?id=${post.id}`)
               .then(response => {

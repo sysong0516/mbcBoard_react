@@ -11,11 +11,9 @@ const UpdatePost = () => {
   useEffect(() => {
     axiosInstance.get(`/post/${id}`)
       .then(response => {
-        setPost(response.data)
+        setPost(response.data.post)
       }).catch(error => {
         console.log(error)
-      }).finally(() => {
-        setLoading(false)
       })
   },[])
 
