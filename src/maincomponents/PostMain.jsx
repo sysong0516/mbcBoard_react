@@ -1,7 +1,20 @@
+import { useEffect, useState } from "react";
 import UseNavi from "../UseNavi";
+import axiosInstance from "../axiosInstance";
 
 const PostMain = () =>  {
   const {goTo} = UseNavi();
+  const [topList, setTopList]  = useState([]);
+
+  useEffect(() => {
+    axiosInstance.get('/toppost')
+      .then(response => {
+        setTopList(response.data)
+      }).catch(error => {
+        console.log(error)
+      })
+  })
+
   return(
     <div>
       <div className="post">
@@ -17,10 +30,16 @@ const PostMain = () =>  {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>3</td>
-              <td>ㅋㅋㅋ</td>
-            </tr>
+            {
+              topList.map((data,i)=> {
+                return(
+                  <tr key={i}>
+                    <td>{data.id}</td>
+                    <td>{data.title}</td>
+                  </tr>
+                )
+              })
+            }
           </tbody>
         </table>
       </div>
