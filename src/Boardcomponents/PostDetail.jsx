@@ -36,6 +36,7 @@ const PostDetail = () => {
         <div className="postdetail-buttons">
           <button onClick={() => {
             goTo('/post/modify/:id') //id 부분에 실제 id 값을 넣어야 함
+            console.log(id);
           }}>수정</button>
           <button>삭제</button>
         </div>
