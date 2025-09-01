@@ -17,9 +17,7 @@ const MainPage = ( ) => {
       <div className="mainpage-card">
         <UnamedPost />
       </div>
-      <div>
-       <OffcanvasDemo />
-      </div>
+      
       <button className="mainpage-btn" onClick={() => goTo('/randomuser')}>추첨</button>
     </div>
   )
