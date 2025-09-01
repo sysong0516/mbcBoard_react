@@ -7,7 +7,7 @@ const Header = ({ auth, setAuth }) => {
 
   
   // 로그인한 사용자 아이디를 sessionStorage에서 가져옴
-  const username = sessionStorage.getItem('username');
+  const username = sessionStorage.getItem('username')
   return(
     <header className="header">
       <Link to="/" className="logo"><FontAwesomeIcon icon={faHouse} size="3vh"/>Pink천국</Link>
