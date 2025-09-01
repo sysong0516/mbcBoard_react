@@ -4,6 +4,7 @@
   gap: 12px;
   margin: 12px 0;
 }
+
 /* PostDetail 중앙 정렬 및 카드 스타일 */
 .postdetail-container {
   display: flex;
@@ -24,4 +25,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.postdetail-reply {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  min-height: 10px;
 }
