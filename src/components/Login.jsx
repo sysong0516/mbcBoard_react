@@ -60,6 +60,7 @@ const Login = ({ setAuth }) => {
 
                 if (jwt != null) {
                   sessionStorage.setItem('jwt', jwt); // sessionStorage에 jwt 토큰 저장
+                  sessionStorage.setItem('username', member.username); // username 저장
                   setAuth(true)
                   alert("로그인 성공");
                   if (rememberMe) {
