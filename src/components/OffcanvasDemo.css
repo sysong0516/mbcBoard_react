@@ -1,3 +1,14 @@
+.offcanvas-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 77px;
+  padding: 16px;
+  background-color: #ffc1cc;
+  border-bottom: 1px solid #ffffff;
+
+}
+
 .offcanvas-btn {
   background-color: #ff69b4; /* 핑크 */
   color: #fff;
