@@ -65,12 +65,6 @@ const PostDetail = () => {
           : " "
           }
           <button onClick={() => {
-<<<<<<< HEAD
-            goTo('/post/modify/:id') //id 부분에 실제 id 값을 넣어야 함
-            console.log(id);
-          }}>수정</button>
-          <button>삭제</button>
-=======
             axiosInstance.get(`/postlike?id=${post.id}`)
               .then(response => {
                 setPost(response.data)
@@ -80,7 +74,6 @@ const PostDetail = () => {
           }}>
             &nbsp;<FontAwesomeIcon icon={faThumbsUp} />
           </button>
->>>>>>> develop
         </div>
         <hr />
         <h5>댓글 목록</h5>

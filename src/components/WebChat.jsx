@@ -10,19 +10,16 @@ const WebChat = forwardRef((props, ref) => {
     });
     const client = over(socket);
 
-<<<<<<< HEAD
-=======
     // console.log("웹소켓 연결 시도");
 
->>>>>>> develop
     const jwt = sessionStorage.getItem('jwt');
     let subscription;
     client.connect(
       { Authorization: jwt },
       () => {
-<<<<<<< HEAD
+        // console.log("웹소켓 연결 성공");
         setStompClient(client);
-        subscription = client.subscribe("/sub/messages", (message) => {
+        client.subscribe("/sub/messages", (message) => {
           let parsed;
           try {
             parsed = JSON.parse(message.body);
@@ -30,13 +27,6 @@ const WebChat = forwardRef((props, ref) => {
             parsed = { username: '알수없음', text: message.body };
           }
           setReceivedMessages((prev) => [...prev, parsed]);
-=======
-        // console.log("웹소켓 연결 성공");
-        setStompClient(client);
-        client.subscribe("/sub/messages", (message) => {
-          // console.log(message);
-          setReceivedMessages((prev) => [...prev, message.body]);
->>>>>>> develop
         });
       },
       (error) => {
