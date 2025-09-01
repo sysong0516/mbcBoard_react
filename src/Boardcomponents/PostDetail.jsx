@@ -13,11 +13,18 @@ const PostDetail = () => {
   const { id } = useParams();
   const [loading, setLoading] = useState(true);
   const [isOwer, setIsOwer] = useState(false);
+  const [userInfo, setUserInfo] = useState(null);
 
   const [editingReplyId, setEditingReplyId] = useState(null); // 수정 중인 댓글 ID
   const [editContent, setEditContent] = useState(""); // 수정 내용
 
   useEffect(() => {
+    axiosInstance.get('/userInfo')
+      .then(response => {
+        setUserInfo(response.data);
+      }).catch(error => {
+        console.log(error)
+      });
     fetchPost(); // 처음 마운트될 때 데이터 불러오기
   }, []);
 
@@ -112,6 +119,7 @@ const PostDetail = () => {
                         alert(response.data);
                         fetchPost();
                       }).catch(error => {
+                        alert(error.response.data);
                         console.log(error)
                       })
                     setEditingReplyId(null);
@@ -121,10 +129,27 @@ const PostDetail = () => {
                 </>
               ) : (
                 <><p>{reply.content}</p>
-                  <button onClick={() => handleEditClick(reply)}>수정</button>
+                  {
+                    userInfo && (userInfo === reply.user.id) && (
+                      <button onClick={() => handleEditClick(reply)}>수정</button>
+                    )
+                  }
                 </>
               )}
-              <button>삭제</button>
+              {
+                userInfo && (userInfo === reply.user.id) && (
+                  <button onClick={() => {
+                    axiosInstance.delete(`/reply/${reply.id}`)
+                      .then(response => {
+                        alert(response.data);
+                        fetchPost();
+                      }).catch(error => {
+                        alert(error.response.data);
+                        console.log(error)
+                      })
+                  }}>삭제</button>
+                )
+              }
             </div>
           ))
         ) : (
