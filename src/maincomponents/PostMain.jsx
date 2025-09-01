@@ -7,13 +7,14 @@ const PostMain = () =>  {
   const [topList, setTopList]  = useState([]);
 
   useEffect(() => {
-    axiosInstance.get('/toppost')
+    axiosInstance.get("/post", {params: {size:3, sort:"id,desc"}})
       .then(response => {
-        setTopList(response.data)
+        console.log(response.data)
+        setTopList(response.data.content)
       }).catch(error => {
         console.log(error)
       })
-  })
+  },[])
 
   return(
     <div>
@@ -27,6 +28,8 @@ const PostMain = () =>  {
             <tr>
               <th>번호</th>
               <th>제목</th>
+              <th>작성자</th>
+              <th>작성일</th>
             </tr>
           </thead>
           <tbody>
@@ -36,6 +39,8 @@ const PostMain = () =>  {
                   <tr key={i}>
                     <td>{data.id}</td>
                     <td>{data.title}</td>
+                    <td>{data.user.username}</td>
+                    <td>{data.createDate}</td>
                   </tr>
                 )
               })
