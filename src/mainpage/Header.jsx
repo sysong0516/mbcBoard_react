@@ -13,6 +13,10 @@ const Header = ({ auth, setAuth }) => {
     <header className="header">
       <Link to="/" className="logo"><FontAwesomeIcon icon={faHouse} size="3vh"/>Pink천국</Link>
       <nav className="nav">
+        <Link to="/message">쪽지</Link>
+        <Link to="/post">게시판</Link>
+        <Link to="/">인기글</Link>
+        <Link to="/">채팅</Link>
         <Link to="/post">공부 게시판</Link>
         <Link to="/unnamed">익명 게시판</Link>
           
