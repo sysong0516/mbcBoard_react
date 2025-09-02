@@ -1,0 +1,69 @@
+
+.unnamed-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+.unnamed-header h2 {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #b03060;
+}
+.unnamed-header button {
+  background: #b03060;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 16px;
+  font-size: 15px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+.unnamed-header button:hover {
+  background: #a02050;
+}
+
+
+.unnamed {
+  background: #fff6fa;
+  border-radius: 18px;
+  box-shadow: 0 4px 16px rgba(220, 120, 180, 0.12);
+  padding: 32px 24px;
+  width: 720px;
+  max-width: 95vw;
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.unnamed table {
+  width: 100%;
+  margin-bottom: 16px;
+  border-collapse: collapse;
+}
+.unnamed th, .unnamed td {
+  border-bottom: 1px solid #e0b7d7;
+  padding: 8px;
+  text-align: center;
+}
+.unnamed th {
+  background: #ffe4ec;
+  color: #b03060;
+}
+.unnamed td {
+  color: #333;
+}
+.unnamed a {
+  color: #1976d2;
+  text-decoration: underline;
+  font-weight: 500;
+}
+.unnamed tr:last-child td {
+  border-bottom: none;
+}
+
+
