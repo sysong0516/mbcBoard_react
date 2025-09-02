@@ -34,3 +34,9 @@
   justify-content: center;
   min-height: 10px;
 }
+
+.postdetail-reply table {
+  width: 100%;
+  margin-bottom: 16px;
+  border-collapse: collapse;
+}
