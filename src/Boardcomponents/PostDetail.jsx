@@ -16,6 +16,8 @@ const PostDetail = () => {
   const [loading, setLoading] = useState(true);
   const [isOwer, setIsOwer] = useState(false);
   const [userInfo, setUserInfo] = useState(null);
+  const [liked, setLiked] = useState(true);
+  const [likeCount ,setLikeCount] = useState([]);
 
   const [editingReplyId, setEditingReplyId] = useState(null); // 수정 중인 댓글 ID
   const [editContent, setEditContent] = useState(""); // 수정 내용
@@ -28,6 +30,7 @@ const PostDetail = () => {
         console.log(error)
       });
     fetchPost(); // 처음 마운트될 때 데이터 불러오기
+    getLikes();
   }, []);
 
   const fetchPost = async () => {
@@ -52,6 +55,28 @@ const PostDetail = () => {
     setEditContent("");
   };
 
+  const onClickLike = async () => {
+    const { data } = await axiosInstance.post(`/post/${id}/like`);
+    setLiked(data.liked);
+    setLikeCount(data.likeCount);
+    if(data.liked) {
+      alert("👍 했습니다")
+    } else {
+      alert("👍 취소했습니다")
+    }
+  };
+
+  const getLikes = async() => {
+    axiosInstance.get(`/postlike?postId=${id}`)
+      .then(response => {
+        setLikeCount(response.data)
+      }).catch(error => {
+        console.log(error)
+      })
+  }
+
+  
+
   const formatTime = (timestamp) => {
     const date = new Date(timestamp);
     const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -73,7 +98,7 @@ const PostDetail = () => {
         <span>{post.user.username}&nbsp;|&nbsp;
           <span>{localTime(post.createDate)}</span>&nbsp;|&nbsp;
           <span>&nbsp;<FontAwesomeIcon icon={faEye} />&nbsp;{post.cnt}&nbsp;</span> |
-          <span>&nbsp;<FontAwesomeIcon icon={faThumbsUp} />&nbsp;{post.likes}</span>
+          <span>&nbsp;<FontAwesomeIcon icon={faThumbsUp} />&nbsp;{likeCount}</span>
         </span>
         <hr />
         <div dangerouslySetInnerHTML={{ __html: post.content }} />
@@ -100,14 +125,7 @@ const PostDetail = () => {
               </>
               : " "
           }
-          <button onClick={() => {
-            axiosInstance.get(`/postlike?id=${post.id}`)
-              .then(response => {
-                setPost(response.data)
-              }).catch(error => {
-                console.log(error)
-              })
-          }}>
+          <button onClick={onClickLike }>
             &nbsp;<FontAwesomeIcon icon={faThumbsUp} />
           </button>
         </div>

@@ -9,7 +9,6 @@ const PostBoard = () => {
       'title': '',
       'content' : '',
       'cnt' : 0,
-      'likes': 0
   });
 
   const onChangeHandler = (e) => {
