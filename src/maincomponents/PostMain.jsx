@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
 import UseNavi from "../UseNavi";
 import axiosInstance from "../axiosInstance";
+import { Link } from "react-router-dom";
+
 
 const PostMain = () =>  {
   const {goTo} = UseNavi();
   const [topList, setTopList]  = useState([]);
-
+  
   useEffect(() => {
-    axiosInstance.get("/post", {params: {size:3, sort:"id,desc"}})
+    axiosInstance.get("/post", {params: {size:3}})
       .then(response => {
-        console.log(response.data)
         setTopList(response.data.content)
       }).catch(error => {
         console.log(error)
@@ -33,17 +34,22 @@ const PostMain = () =>  {
             </tr>
           </thead>
           <tbody>
-            {
+            { topList.length > 0 ? (
               topList.map((data,i)=> {
                 return(
                   <tr key={i}>
                     <td>{data.id}</td>
-                    <td>{data.title}</td>
+                    <td><Link to={`/post/${data.id}`}>{data.title}</Link></td>
                     <td>{data.user.username}</td>
                     <td>{data.createDate}</td>
                   </tr>
                 )
               })
+            ) : (
+              <tr>
+                <td colSpan="4">게시글이 없습니다.</td>
+              </tr>
+            )
             }
           </tbody>
         </table>
