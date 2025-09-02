@@ -128,11 +128,11 @@ const PostDetail = () => {
                 <tr key={i} className="postdetail-reply">
                   <td>{reply.user.username}</td>
                   {editingReplyId === reply.id ? (
-                    <>
+                    <td colSpan={3} className="reply-edit-area">
                       <textarea
                         value={editContent}
                         onChange={(e) => setEditContent(e.target.value)} />
-                      <button onClick={() => {
+                      <button className="reply-save-btn" onClick={() => {
                         reply.content = document.querySelector('textarea').value
                         reply.id = editingReplyId
                         axiosInstance.put(`/reply/${id}`, reply)
@@ -146,21 +146,27 @@ const PostDetail = () => {
                         setEditingReplyId(null);
                         setEditContent("");
                       }}>저장</button>
-                      <button onClick={handleCancel}>취소</button>
-                    </>
+                      <button className="reply-cancel-btn" onClick={handleCancel}>취소</button>
+                    </td>
                   ) : (
                     <><td>{reply.content}</td>
                       <td>{formatTime(reply.createDate)}</td>
-                      {
+                      <td className="reply-action">
+                        {
                         userInfo && (userInfo === reply.user.id) && (
-                          <td><button onClick={() => handleEditClick(reply)}>수정</button></td>
+                          <td>
+                            <button className="reply-edit-btn" onClick={() => handleEditClick(reply)}>수정</button>
+                          
+                          </td>
                         )
                       }
+                      </td>
+                      
                     </>
                   )}
                   {
                     userInfo && (userInfo === reply.user.id) && (
-                      <td><button onClick={() => {
+                      <td><button className="reply-delete-btn" onClick={() => {
                         axiosInstance.delete(`/reply/${reply.id}`)
                           .then(response => {
                             alert(response.data);
@@ -180,10 +186,11 @@ const PostDetail = () => {
           </tbody>
         </table>
         <textarea
+          className="reply-input"
           value={replyContent}
           onChange={e => setReplyContent(e.target.value)}
         />
-        <button onClick={() => {
+        <button className="reply-submit-btn" onClick={() => {
           if (!replyContent.trim()) {
             alert("댓글 내용을 입력해주세요.");
             return;

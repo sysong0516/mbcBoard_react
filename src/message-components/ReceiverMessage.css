@@ -4,6 +4,13 @@
   box-sizing: border-box;
 }
 
+.sent-message-header {
+  display: flex;
+  justify-content: space-between;  
+  align-items: center;
+  margin-bottom: 3vh;
+}
+
 .sent-container h2 {
   font-size: 2.5vh;
   color: #ff4da6;
