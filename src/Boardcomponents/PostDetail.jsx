@@ -172,10 +172,7 @@ const PostDetail = () => {
                       <td className="reply-action">
                         {
                         userInfo && (userInfo === reply.user.id) && (
-                          <td>
                             <button className="reply-edit-btn" onClick={() => handleEditClick(reply)}>수정</button>
-                          
-                          </td>
                         )
                       }
                       </td>
@@ -199,7 +196,7 @@ const PostDetail = () => {
                 </tr>
               ))
             ) : (
-              <p>댓글이 없습니다.</p>
+              <tr>댓글이 없습니다.</tr>
             )}
           </tbody>
         </table>

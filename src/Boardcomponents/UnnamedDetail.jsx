@@ -15,7 +15,7 @@ const UnnamedDetail = () => {
   const [loading, setLoading] = useState(true);
   const [userInfo, setUserInfo] = useState(null);
   const [liked, setLiked] = useState(true);
-  const [likeCount ,setLikeCount] = useState([]);
+  const [likeCount, setLikeCount] = useState([]);
 
   const [editingReplyId, setEditingReplyId] = useState(null); // 수정 중인 댓글 ID
   const [editContent, setEditContent] = useState(""); // 수정 내용
@@ -60,18 +60,18 @@ const UnnamedDetail = () => {
     return `${month}-${day} ${hours}:${minutes}`;
   }
 
-   const onClickLike = async () => {
+  const onClickLike = async () => {
     const { data } = await axiosInstance.post(`/unnamed/${id}/like`);
     setLiked(data.liked);
     setLikeCount(data.likeCount);
-    if(data.liked) {
+    if (data.liked) {
       alert("👍 했습니다")
     } else {
       alert("👍 취소했습니다")
     }
   };
 
-  const getLikes = async() => {
+  const getLikes = async () => {
     axiosInstance.get(`/unnamedlike?postId=${id}`)
       .then(response => {
         setLikeCount(response.data)
@@ -140,11 +140,13 @@ const UnnamedDetail = () => {
                   ) : (
                     <><td>{reply.content}</td>
                       <td>{formatTime(reply.createDate)}</td>
-                      {
-                        userInfo && (userInfo === reply.user.id) && (
-                          <td><button onClick={() => handleEditClick(reply)}>수정</button></td>
-                        )
-                      }
+                      <td className="reply-action">
+                        {
+                          userInfo && (userInfo === reply.user.id) && (
+                            <button onClick={() => handleEditClick(reply)}>수정</button>
+                          )
+                        }
+                      </td>
                     </>
                   )}
                   {
@@ -164,7 +166,7 @@ const UnnamedDetail = () => {
                 </tr>
               ))
             ) : (
-              <p>댓글이 없습니다.</p>
+              <tr>댓글이 없습니다.</tr>
             )}
           </tbody>
         </table>
