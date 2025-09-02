@@ -6,6 +6,7 @@ import axiosInstance from "../axiosInstance";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp } from "@fortawesome/free-solid-svg-icons/faThumbsUp";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
+import localTime from "../localTime";
 
 const PostDetail = () => {
   const { goTo } = UseNavi();
@@ -60,6 +61,7 @@ const PostDetail = () => {
       <div className="postdetail-card">
         <h3>{post.title}</h3>
         <span>{post.user.username}&nbsp;|&nbsp;
+          <span>{localTime(post.createDate)}</span>&nbsp;|&nbsp;
           <span>&nbsp;<FontAwesomeIcon icon={faEye} />&nbsp;{post.cnt}&nbsp;</span> |
           <span>&nbsp;<FontAwesomeIcon icon={faThumbsUp} />&nbsp;{post.likes}</span>
         </span>

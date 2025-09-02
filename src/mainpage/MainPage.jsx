@@ -1,5 +1,4 @@
 import OffcanvasDemo from "../components/OffcanvasDemo";
-import PostMain from "../maincomponents/PostMain";
 import UnamedPost from "../maincomponents/UnamedPost";
 import UseNavi from "../UseNavi";
 
@@ -12,10 +11,10 @@ const MainPage = ( ) => {
   return(
     <div className="mainpage-container">
       <div className="mainpage-card">
-        <PostMain />
+        <UnamedPost url={'/post'} title={'공부 게시판'}/>
       </div>
       <div className="mainpage-card">
-        <UnamedPost />
+        <UnamedPost url={'/unnamed'} title={'익명 게시판'} />
       </div>
       
       <button className="mainpage-btn" onClick={() => goTo('/randomuser')}>추첨</button>
