@@ -10,6 +10,7 @@ export default function RandomUser() {
   const [selected, setSelected] = useState(null);
   const [highlight, setHighlight] = useState(null);
   const [isPicking, setIsPicking] = useState(false);
+  const [pickedIds, setPickedIds] = useState([]);
 
   useEffect(() => {
     axiosInstance.get('/userList')
@@ -23,25 +24,28 @@ export default function RandomUser() {
       });
   }, []);
 
-  // 카드 셀렉 효과
-  const pickWithDelay = (count, delay) => {
-    const randomIndex = Math.floor(Math.random() * users.length);
-    setHighlight(users[randomIndex]?.id);
+  // 카드 셀렉 효과 (pickedIds에 없는 유저만 추첨)
+  const pickWithDelay = (count, delay, candidates) => {
+    const randomIndex = Math.floor(Math.random() * candidates.length);
+    setHighlight(candidates[randomIndex]?.id);
     if (count > 10) {
-      setSelected(users[randomIndex]);
+      setSelected(candidates[randomIndex]);
+      setPickedIds(prev => [...prev, candidates[randomIndex].id]);
       setIsPicking(false);
       return;
     }
     setTimeout(() => {
-      pickWithDelay(count + 1, delay + 40);
+      pickWithDelay(count + 1, delay + 40, candidates);
     }, delay);
   };
 
   const startPick = () => {
-    if (isPicking || users.length === 0) return;
+    if (isPicking) return;
+    const candidates = users.filter(u => !pickedIds.includes(u.id));
+    if (candidates.length === 0) return;
     setIsPicking(true);
     setSelected(null);
-    pickWithDelay(0, 80);
+    pickWithDelay(0, 80, candidates);
   };
 
   if (loading) return <div style={{textAlign:'center', marginTop:'2rem'}}>로딩 중...</div>;
@@ -68,36 +72,49 @@ export default function RandomUser() {
         alignItems: 'center',
         margin: '2rem 0',
       }}>
-        {users.map((user) => (
-          <motion.div
-            key={user.id}
-            animate={{
-              scale: highlight === user.id ? 1.1 : 1,
-              backgroundColor: highlight === user.id ? '#3B82F6' : '#f9f9f9',
-              color: highlight === user.id ? '#fff' : '#000',
-            }}
-            transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-            style={{
-              border: '1px solid #ccc',
-              borderRadius: '10px',
-              padding: '1rem',
-              width: '100%',
-              maxWidth: '160px',
-              boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
-              fontWeight: 'bold',
-              fontSize: '1.1rem',
-              marginBottom: '0.5rem',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            {user.name}
-            <div style={{ color: '#555', fontSize: '0.9rem' }}>@{user.username}</div>
-            <div style={{ fontSize: '0.8rem', color: '#aaa', marginTop: '0.5rem' }}>ID: {user.id}</div>
-          </motion.div>
-        ))}
+        {users.map((user) => {
+          const isPicked = pickedIds.includes(user.id);
+          return (
+            <motion.div
+              key={user.id}
+              animate={{
+                scale: highlight === user.id ? 1.1 : 1,
+                backgroundColor: isPicked
+                  ? '#888' // 당첨자는 어둡게
+                  : highlight === user.id
+                  ? '#3B82F6'
+                  : '#f9f9f9',
+                color: isPicked
+                  ? '#fff'
+                  : highlight === user.id
+                  ? '#fff'
+                  : '#000',
+                opacity: isPicked ? 0.6 : 1,
+              }}
+              transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+              style={{
+                border: '1px solid #ccc',
+                borderRadius: '10px',
+                padding: '1rem',
+                width: '100%',
+                maxWidth: '160px',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
+                fontWeight: 'bold',
+                fontSize: '1.1rem',
+                marginBottom: '0.5rem',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              {user.name}
+              <div style={{ color: '#555', fontSize: '0.9rem' }}>@{user.username}</div>
+              <div style={{ fontSize: '0.8rem', color: '#aaa', marginTop: '0.5rem' }}>ID: {user.id}</div>
+              {isPicked && <div style={{fontSize:'0.8rem', color:'#fff', marginTop:'0.5rem'}}>당첨됨</div>}
+            </motion.div>
+          );
+        })}
       </div>
       <button
         onClick={startPick}

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../axiosInstance";
+import "./WriteMessage.css"
 
 const WriteMessage = () => {
   const navigate = useNavigate();
@@ -37,7 +38,7 @@ const WriteMessage = () => {
   };
 
   return(
-   <div>
+   <div className="write-message">
       <h2>쪽지 쓰기</h2>
       <form onSubmit={handleSubmit}>
         <input

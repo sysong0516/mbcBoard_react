@@ -137,6 +137,7 @@ const PostDetail = () => {
               <th>작성자</th>
               <th>내용</th>
               <th>작성일</th>
+              <th>수정삭제</th>
             </tr>
           </thead>
           <tbody>

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "./UnamedPost.css";
 import UseNavi from "../UseNavi";
 import axiosInstance from "../axiosInstance";
 import { Link } from "react-router-dom";

@@ -1,0 +1,68 @@
+*{
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.write-message {
+  max-width: 60vw;
+  margin: 5vh auto;
+  padding: 4vh 3vw;
+  background: white;
+  border-radius: 2vw;
+  box-shadow: 0 1vh 2vh rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+}
+
+.write-message h2 {
+  margin-bottom: 3vh;
+  color: #ff69b4;
+  font-size: 1.6rem;
+}
+
+.write-message input,
+.write-message textarea {
+  width: 90%;
+  padding: 1.5vh 1vw;
+  margin-bottom: 2vh;
+  border: 0.3vh solid #ffb6c1;
+  border-radius: 1vw;
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.write-message input:focus,
+.write-message textarea:focus {
+  border-color: #ff69b4;
+  box-shadow: 0 0 1vh rgba(255, 105, 180, 0.5);
+}
+
+.write-message textarea {
+  min-height: 20vh;
+  resize: vertical;
+}
+
+.write-message .error {
+  color: red;
+  font-size: 0.9rem;
+  margin-bottom: 2vh;
+}
+
+.write-message button {
+  padding: 1.5vh 3vw;
+  background: #ff69b4;
+  border: none;
+  border-radius: 1vw;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.write-message button:hover {
+  background: #ff1493;
+  transform: translateY(-0.5vh) scale(1.05);
+}

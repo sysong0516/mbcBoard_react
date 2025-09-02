@@ -40,3 +40,12 @@
   margin-bottom: 16px;
   border-collapse: collapse;
 }
+.postdetail-reply th, .postdetail-reply td {
+  border-bottom: 1px solid #e0b7d7;
+  padding: 8px;
+  text-align: center;
+}
+.postdetail-reply th {
+  background: #ffe4ec;
+  color: #b03060;
+}
