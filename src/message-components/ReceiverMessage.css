@@ -1,0 +1,63 @@
+
+.sent-container {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.sent-container h2 {
+  font-size: 2.5vh;
+  color: #ff4da6;
+  margin-bottom: 2vh;
+  border-bottom: 2px solid #ffb3d9;
+  padding-bottom: 1vh;
+}
+
+.delete-btn {
+  float: right;
+  background-color: #ff66b2;
+  color: #fff;
+  border: none;
+  border-radius: 1rem;
+  padding: 1vh 2vw;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 1.8vh;
+  margin-bottom: 2vh;
+}
+
+.delete-btn:hover {
+  background-color: #ff3385;
+}
+
+.message-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.message-list li {
+  background: #ffe6f0;
+  margin-bottom: 2vh;
+  padding: 2vh 2vw;
+  border-radius: 1rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  display: flex;
+  align-items: flex-start;
+  gap: 1vw;
+}
+
+.message-list li p {
+  margin: 0.5vh 0;
+  color: #333;
+  font-size: 1.6vh;
+}
+
+.message-list li p strong {
+  color: #ff4da6;
+}
+
+.message-checkbox {
+  margin-top: 0.5vh;
+  transform: scale(1.2);
+  accent-color: #ff66b2; 
+}
