@@ -9,6 +9,7 @@ import { faEye } from "@fortawesome/free-solid-svg-icons";
 import localTime from "../localTime";
 
 const PostDetail = () => {
+  const [replyContent, setReplyContent] = useState(""); // 댓글 입력값 상태
   const { goTo } = UseNavi();
   const [post, setPost] = useState([]);
   const { id } = useParams();
@@ -50,6 +51,15 @@ const PostDetail = () => {
     setEditingReplyId(null);
     setEditContent("");
   };
+
+  const formatTime = (timestamp) => {
+    const date = new Date(timestamp);
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    return `${month}-${day} ${hours}:${minutes}`;
+  }
 
   if (loading)
     return <h1>로딩중 입니다....</h1>
@@ -103,68 +113,87 @@ const PostDetail = () => {
         </div>
         <hr />
         <h5>댓글 목록</h5>
-        {post.replyList && post.replyList.length > 0 ? (
-          post.replyList.map((reply, i) => (
-            <div key={i} className="postdetail-reply">
-              <p>{reply.user.username}</p>
-              <p>-</p>
-              {editingReplyId === reply.id ? (
-                <>
-                  <textarea
-                    value={editContent}
-                    onChange={(e) => setEditContent(e.target.value)} />
-                  <button onClick={() => {
-                    reply.content = document.querySelector('textarea').value
-                    reply.id = editingReplyId
-                    axiosInstance.put(`/reply/${id}`, reply)
-                      .then(response => {
-                        alert(response.data);
-                        fetchPost();
-                      }).catch(error => {
-                        alert(error.response.data);
-                        console.log(error)
-                      })
-                    setEditingReplyId(null);
-                    setEditContent("");
-                  }}>저장</button>
-                  <button onClick={handleCancel}>취소</button>
-                </>
-              ) : (
-                <><p>{reply.content}</p>
+        <table>
+          <thead>
+            <tr>
+              <th>작성자</th>
+              <th>내용</th>
+              <th>작성일</th>
+            </tr>
+          </thead>
+          <tbody>
+            {post.replyList && post.replyList.length > 0 ? (
+              post.replyList.map((reply, i) => (
+                <tr key={i} className="postdetail-reply">
+                  <td>{reply.user.username}</td>
+                  {editingReplyId === reply.id ? (
+                    <>
+                      <textarea
+                        value={editContent}
+                        onChange={(e) => setEditContent(e.target.value)} />
+                      <button onClick={() => {
+                        reply.content = document.querySelector('textarea').value
+                        reply.id = editingReplyId
+                        axiosInstance.put(`/reply/${id}`, reply)
+                          .then(response => {
+                            alert(response.data);
+                            fetchPost();
+                          }).catch(error => {
+                            alert(error.response.data);
+                            console.log(error)
+                          })
+                        setEditingReplyId(null);
+                        setEditContent("");
+                      }}>저장</button>
+                      <button onClick={handleCancel}>취소</button>
+                    </>
+                  ) : (
+                    <><td>{reply.content}</td>
+                      <td>{formatTime(reply.createDate)}</td>
+                      {
+                        userInfo && (userInfo === reply.user.id) && (
+                          <td><button onClick={() => handleEditClick(reply)}>수정</button></td>
+                        )
+                      }
+                    </>
+                  )}
                   {
                     userInfo && (userInfo === reply.user.id) && (
-                      <button onClick={() => handleEditClick(reply)}>수정</button>
+                      <td><button onClick={() => {
+                        axiosInstance.delete(`/reply/${reply.id}`)
+                          .then(response => {
+                            alert(response.data);
+                            fetchPost();
+                          }).catch(error => {
+                            alert(error.response.data);
+                            console.log(error)
+                          })
+                      }}>삭제</button></td>
                     )
                   }
-                </>
-              )}
-              {
-                userInfo && (userInfo === reply.user.id) && (
-                  <button onClick={() => {
-                    axiosInstance.delete(`/reply/${reply.id}`)
-                      .then(response => {
-                        alert(response.data);
-                        fetchPost();
-                      }).catch(error => {
-                        alert(error.response.data);
-                        console.log(error)
-                      })
-                  }}>삭제</button>
-                )
-              }
-            </div>
-          ))
-        ) : (
-          <p>댓글이 없습니다.</p>
-        )}
-        <textarea />
+                </tr>
+              ))
+            ) : (
+              <p>댓글이 없습니다.</p>
+            )}
+          </tbody>
+        </table>
+        <textarea
+          value={replyContent}
+          onChange={e => setReplyContent(e.target.value)}
+        />
         <button onClick={() => {
+          if (!replyContent.trim()) {
+            alert("댓글 내용을 입력해주세요.");
+            return;
+          }
           const reply = {
-            content: document.querySelector('textarea').value
+            content: replyContent
           }
           axiosInstance.post(`/reply/${id}`, reply)
             .then(response => {
               alert(response.data);
+              setReplyContent(""); // 입력값 초기화
               fetchPost();
             }).catch(error => {
               console.log(error)
