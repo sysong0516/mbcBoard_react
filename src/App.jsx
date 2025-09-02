@@ -14,6 +14,7 @@ import PostDetail from './Boardcomponents/PostDetail';
 
 import RandomUser from './components/RandomUser';
 import UnnamedBoard from './Boardcomponents/UnnamedBoard';
+import UnnamedWrite from './Boardcomponents/UnnamedWrite';
 import PostBoard from './Boardcomponents/PostBoard';
 
 import UpdatePost from './Boardcomponents/UpdatePost';
@@ -53,7 +54,7 @@ function App() {
             <Route path='/unnamed/:id' element={<UnnamedDetail />} />
             <Route path='/post/:id' element={<ProtectedRoute auth={auth}><PostDetail /></ProtectedRoute>} />
             <Route path='/randomuser' element={<RandomUser />} />
-            <Route path='/unnamed/write' element={<UnnamedBoard />} />
+            <Route path='/unnamed/write' element={<ProtectedRoute auth={auth}><UnnamedWrite /></ProtectedRoute>} />
             <Route path='/post/write' element={<ProtectedRoute auth={auth}><PostBoard /></ProtectedRoute>} />
             <Route path='/post/modify/:id' element={<ProtectedRoute auth={auth}><UpdatePost /></ProtectedRoute>} />
             <Route path='/privacy' element={<Privacy />} />
