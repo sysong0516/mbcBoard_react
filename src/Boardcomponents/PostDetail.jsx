@@ -76,7 +76,7 @@ const PostDetail = () => {
           <span>&nbsp;<FontAwesomeIcon icon={faThumbsUp} />&nbsp;{post.likes}</span>
         </span>
         <hr />
-        <p>{post.content}</p>
+        <div dangerouslySetInnerHTML={{ __html: post.content }} />
         <div className="postdetail-buttons">
           {
             isOwer

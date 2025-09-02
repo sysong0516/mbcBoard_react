@@ -71,7 +71,7 @@ const UnnamedDetail = () => {
           <span>&nbsp;<FontAwesomeIcon icon={faThumbsUp} />&nbsp;{board.likes}</span>
         </span>
         <hr />
-        <p>{board.content}</p>
+        <div dangerouslySetInnerHTML={{ __html: board.content }} />
         <button onClick={() => {
           axiosInstance.get(`/boardlike?id=${board.id}`)
             .then(response => {

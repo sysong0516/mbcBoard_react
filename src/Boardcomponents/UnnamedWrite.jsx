@@ -3,7 +3,7 @@ import axiosInstance from "../axiosInstance";
 import UseNavi from "../UseNavi";
 import PostEditor from "../components/PostEditor";
 
-const PostBoard = () => {
+const UnnamedWrite = () => {
   const {goTo} = UseNavi();
   const [post,setPost] = useState({
       'title': '',
@@ -20,7 +20,6 @@ const PostBoard = () => {
   };
 
   const onEditorChange = (html) => {
-
     setPost({
       ...post,
       content: html
@@ -35,10 +34,10 @@ const PostBoard = () => {
         onTitleChange={title => setPost({...post, title})}
         onChange={onEditorChange}
         onSubmit={() => {
-          axiosInstance.post('/post/write', post)
+          axiosInstance.post('/unnamed/write', post)
             .then(response => {
               alert(response.data)
-              goTo('/post')
+              goTo('/unnamed')
             }).catch(error => {
               console.error(error)
             })
@@ -48,4 +47,4 @@ const PostBoard = () => {
   )
 }
 
-export default PostBoard;
+export default UnnamedWrite;
