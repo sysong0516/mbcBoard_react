@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import axiosInstance from "../axiosInstance";
 import { useLocation } from "react-router-dom";
+import localTime from "../localTime";
 
 const SentMessage = () => {
   const [messages, setMessages] = useState([]);
@@ -62,7 +63,7 @@ const SentMessage = () => {
          (messages.map( (msg,i) => {
             return(
               <li key={msg.id}>
-              {show ? <input type="checkbox" onChange={()=>selectHandle(msg.id)}/> : <></>}<p>받는 사람 : {msg.receiverName}<br/>내용 : {msg.content}</p>
+              {show ? <input type="checkbox" onChange={()=>selectHandle(msg.id)}/> : <></>}<p>받는 사람 : {msg.receiverName}<br/>내용 : {msg.content}<br/><p>날짜 : {localTime(msg.createDate)}</p></p>
               </li>
             );
           }))

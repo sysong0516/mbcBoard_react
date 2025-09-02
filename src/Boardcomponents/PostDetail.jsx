@@ -6,15 +6,31 @@ import axiosInstance from "../axiosInstance";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp } from "@fortawesome/free-solid-svg-icons/faThumbsUp";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
+import localTime from "../localTime";
 
 const PostDetail = () => {
-  const {goTo} = UseNavi();
+  const [replyContent, setReplyContent] = useState(""); // 댓글 입력값 상태
+  const { goTo } = UseNavi();
   const [post, setPost] = useState([]);
-  const {id} = useParams();
+  const { id } = useParams();
   const [loading, setLoading] = useState(true);
-  const [isOwer,setIsOwer] = useState(false);
-  
+  const [isOwer, setIsOwer] = useState(false);
+  const [userInfo, setUserInfo] = useState(null);
+
+  const [editingReplyId, setEditingReplyId] = useState(null); // 수정 중인 댓글 ID
+  const [editContent, setEditContent] = useState(""); // 수정 내용
+
   useEffect(() => {
+    axiosInstance.get('/userInfo')
+      .then(response => {
+        setUserInfo(response.data);
+      }).catch(error => {
+        console.log(error)
+      });
+    fetchPost(); // 처음 마운트될 때 데이터 불러오기
+  }, []);
+
+  const fetchPost = async () => {
     axiosInstance.get(`/post/${id}`)
       .then(response => {
         setPost(response.data.post)
@@ -23,19 +39,39 @@ const PostDetail = () => {
         console.log(error)
       }).finally(() => {
         setLoading(false)
-      })
-  },[])
+      });
+  };
 
-  if(loading)
+  const handleEditClick = (reply) => {
+    setEditingReplyId(reply.id);
+    setEditContent(reply.content);
+  };
+
+  const handleCancel = () => {
+    setEditingReplyId(null);
+    setEditContent("");
+  };
+
+  const formatTime = (timestamp) => {
+    const date = new Date(timestamp);
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    return `${month}-${day} ${hours}:${minutes}`;
+  }
+
+  if (loading)
     return <h1>로딩중 입니다....</h1>
-  if(!post)
-    return <h1>존재하지 않는 게시물입니다.</h1>  
+  if (!post)
+    return <h1>존재하지 않는 게시물입니다.</h1>
 
-  return(
+  return (
     <div className="postdetail-container">
       <div className="postdetail-card">
         <h3>{post.title}</h3>
         <span>{post.user.username}&nbsp;|&nbsp;
+          <span>{localTime(post.createDate)}</span>&nbsp;|&nbsp;
           <span>&nbsp;<FontAwesomeIcon icon={faEye} />&nbsp;{post.cnt}&nbsp;</span> |
           <span>&nbsp;<FontAwesomeIcon icon={faThumbsUp} />&nbsp;{post.likes}</span>
         </span>
@@ -43,26 +79,26 @@ const PostDetail = () => {
         <p>{post.content}</p>
         <div className="postdetail-buttons">
           {
-          isOwer 
-          ? 
-          <>
-            <button onClick={() => {
-                goTo(`/post/modify/${id}`)
-              }}>수정</button>
-              <button onClick={() => {
-                if(confirm('정말로 삭제하시겠습니까?')) {
-                  axiosInstance.delete(`/post?id=${post.id}`)
-                    .then(response => {
-                      alert(response.data)
-                      goTo('/post')
-                    }).catch(error =>{
-                      alert('삭제 실패')
-                      console.log(error)
-                    });
-                }
-              }}>삭제</button>
-           </> 
-          : " "
+            isOwer
+              ?
+              <>
+                <button onClick={() => {
+                  goTo(`/post/modify/${id}`)
+                }}>수정</button>
+                <button onClick={() => {
+                  if (confirm('정말로 삭제하시겠습니까?')) {
+                    axiosInstance.delete(`/post?id=${post.id}`)
+                      .then(response => {
+                        alert(response.data)
+                        goTo('/post')
+                      }).catch(error => {
+                        alert('삭제 실패')
+                        console.log(error)
+                      });
+                  }
+                }}>삭제</button>
+              </>
+              : " "
           }
           <button onClick={() => {
             axiosInstance.get(`/postlike?id=${post.id}`)
@@ -77,10 +113,92 @@ const PostDetail = () => {
         </div>
         <hr />
         <h5>댓글 목록</h5>
-        <p>작성자</p>
-        <p>댓글 내용</p>
-        <textarea />
-        <button>댓글 등록</button>
+        <table>
+          <thead>
+            <tr>
+              <th>작성자</th>
+              <th>내용</th>
+              <th>작성일</th>
+            </tr>
+          </thead>
+          <tbody>
+            {post.replyList && post.replyList.length > 0 ? (
+              post.replyList.map((reply, i) => (
+                <tr key={i} className="postdetail-reply">
+                  <td>{reply.user.username}</td>
+                  {editingReplyId === reply.id ? (
+                    <>
+                      <textarea
+                        value={editContent}
+                        onChange={(e) => setEditContent(e.target.value)} />
+                      <button onClick={() => {
+                        reply.content = document.querySelector('textarea').value
+                        reply.id = editingReplyId
+                        axiosInstance.put(`/reply/${id}`, reply)
+                          .then(response => {
+                            alert(response.data);
+                            fetchPost();
+                          }).catch(error => {
+                            alert(error.response.data);
+                            console.log(error)
+                          })
+                        setEditingReplyId(null);
+                        setEditContent("");
+                      }}>저장</button>
+                      <button onClick={handleCancel}>취소</button>
+                    </>
+                  ) : (
+                    <><td>{reply.content}</td>
+                      <td>{formatTime(reply.createDate)}</td>
+                      {
+                        userInfo && (userInfo === reply.user.id) && (
+                          <td><button onClick={() => handleEditClick(reply)}>수정</button></td>
+                        )
+                      }
+                    </>
+                  )}
+                  {
+                    userInfo && (userInfo === reply.user.id) && (
+                      <td><button onClick={() => {
+                        axiosInstance.delete(`/reply/${reply.id}`)
+                          .then(response => {
+                            alert(response.data);
+                            fetchPost();
+                          }).catch(error => {
+                            alert(error.response.data);
+                            console.log(error)
+                          })
+                      }}>삭제</button></td>
+                    )
+                  }
+                </tr>
+              ))
+            ) : (
+              <p>댓글이 없습니다.</p>
+            )}
+          </tbody>
+        </table>
+        <textarea
+          value={replyContent}
+          onChange={e => setReplyContent(e.target.value)}
+        />
+        <button onClick={() => {
+          if (!replyContent.trim()) {
+            alert("댓글 내용을 입력해주세요.");
+            return;
+          }
+          const reply = {
+            content: replyContent
+          }
+          axiosInstance.post(`/reply/${id}`, reply)
+            .then(response => {
+              alert(response.data);
+              setReplyContent(""); // 입력값 초기화
+              fetchPost();
+            }).catch(error => {
+              console.log(error)
+            })
+        }}>댓글 등록</button>
       </div>
     </div>
   )

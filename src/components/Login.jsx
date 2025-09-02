@@ -54,7 +54,6 @@ const Login = ({ setAuth }) => {
               username: document.querySelector('input[name="username"]').value,
               password: document.querySelector('input[name="password"]').value
             };
-            console.log(member);
             axiosInstance.post("/login", member)
               .then(response => {
                 const jwt = response.headers.authorization; // response에서 jwt 토큰을 가져옴
