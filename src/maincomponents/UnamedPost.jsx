@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "./UnamedPost.css";
 import UseNavi from "../UseNavi";
 import axiosInstance from "../axiosInstance";
 import { Link } from "react-router-dom";
@@ -24,7 +25,7 @@ const UnamedPost = ({url,title}) => {
         {
           url === '/unnamed' || url === '/post' ?
           <button onClick={() => {
-            goTo('/unnamed')
+            goTo(url)
           }}>더보기&gt;</button>
           : ""
         }
@@ -48,7 +49,7 @@ const UnamedPost = ({url,title}) => {
                 return(
                   <tr key={i}>
                     <td>{data.id}</td>
-                    <td><Link to={`/unnamed/${data.id}`}>{data.title}</Link></td>
+                    <td><Link to={`${url}/${data.id}`}>{data.title}</Link></td>
                     {
                       url === '/post' ?
                       <td>{data.user.username}</td>
