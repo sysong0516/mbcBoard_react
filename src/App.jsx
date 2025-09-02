@@ -28,6 +28,7 @@ import WriteMessage from './message-components/WriteMessage';
 import ProtectedRoute from './ProtectedRoute';
 import ScrollToTopButton from './components/ScrollToTopButton';
 import RouletteIcon from './components/RouletteIcon';
+import BestPost from './maincomponents/BestPost';
 
 function App() {
   const [test, setTest] = useState();
