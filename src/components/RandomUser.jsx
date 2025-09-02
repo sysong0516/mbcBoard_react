@@ -1,41 +1,34 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-
-const dummyUsers = [
-  { id: 1, name: '홍길동', username: 'hong' },
-  { id: 2, name: '김철수', username: 'kim' },
-  { id: 3, name: '이영희', username: 'lee' },
-  { id: 4, name: '박민수', username: 'park' },
-  { id: 5, name: '최지우', username: 'choi' },
-  { id: 6, name: '정우성', username: 'jung' },
-  { id: 7, name: '한지민', username: 'han' },
-  { id: 8, name: '이준기', username: 'leejg' },
-  { id: 9, name: '신세경', username: 'shin' },
-  { id: 10, name: '박보검', username: 'parkbg' },
-  { id: 11, name: '수지', username: 'suzy' },
-  { id: 12, name: '유재석', username: 'yoo' },
-  { id: 13, name: '강호동', username: 'kang' },
-  { id: 14, name: '이광수', username: 'leeks' },
-  { id: 15, name: '송지효', username: 'song' },
-  { id: 16, name: '김종국', username: 'kimjk' },
-  { id: 17, name: '하하', username: 'haha' },
-  { id: 18, name: '양세찬', username: 'yang' },
-  { id: 19, name: '전소민', username: 'jeon' },
-  { id: 20, name: '조세호', username: 'jo' }
-];
+import axiosInstance from '../axiosInstance';
 
 export default function RandomUser() {
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [selected, setSelected] = useState(null);
   const [highlight, setHighlight] = useState(null);
   const [isPicking, setIsPicking] = useState(false);
 
-  const pickWithDelay = (count, delay) => {
-    const randomIndex = Math.floor(Math.random() * dummyUsers.length);
-    setHighlight(dummyUsers[randomIndex].id);
+  useEffect(() => {
+    axiosInstance.get('/userList')
+      .then(res => {
+        setUsers(res.data);
+        setLoading(false);
+      })
+      .catch(err => {
+        setError('유저 정보를 불러오지 못했습니다.');
+        setLoading(false);
+      });
+  }, []);
 
+  // 카드 셀렉 효과
+  const pickWithDelay = (count, delay) => {
+    const randomIndex = Math.floor(Math.random() * users.length);
+    setHighlight(users[randomIndex]?.id);
     if (count > 10) {
-      setSelected(dummyUsers[randomIndex]);
+      setSelected(users[randomIndex]);
       setIsPicking(false);
       return;
     }
@@ -45,35 +38,37 @@ export default function RandomUser() {
   };
 
   const startPick = () => {
-    if (isPicking) return;
+    if (isPicking || users.length === 0) return;
     setIsPicking(true);
     setSelected(null);
     pickWithDelay(0, 80);
   };
 
+  if (loading) return <div style={{textAlign:'center', marginTop:'2rem'}}>로딩 중...</div>;
+  if (error) return <div style={{textAlign:'center', color:'red', marginTop:'2rem'}}>{error}</div>;
+
   return (
     <div style={{ padding: '2rem', textAlign: 'center' }}>
-      <h2>랜덤 유저 뽑기 (더미데이터)</h2>
-       {selected && (
+      <h2>유저 목록</h2>
+      {selected && (
         <motion.div
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ type: 'spring', stiffness: 200, damping: 10 }}
           style={{ marginTop: '2rem', fontSize: '1.5rem', fontWeight: 'bold', color: 'green' }}
         >
-          🎉 당첨: {selected.name} 🎉
+          🎉 당첨: {selected.name} (@{selected.username}) 🎉
         </motion.div>
       )}
       <div style={{
         display: 'grid',
         gridTemplateColumns: 'repeat(4, 1fr)',
-        gridTemplateRows: 'repeat(5, 1fr)',
         gap: '1rem',
         justifyItems: 'center',
         alignItems: 'center',
         margin: '2rem 0',
       }}>
-        {dummyUsers.map((user) => (
+        {users.map((user) => (
           <motion.div
             key={user.id}
             animate={{
@@ -89,7 +84,6 @@ export default function RandomUser() {
               width: '100%',
               maxWidth: '160px',
               boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
-              cursor: 'pointer',
               fontWeight: 'bold',
               fontSize: '1.1rem',
               marginBottom: '0.5rem',
@@ -124,8 +118,6 @@ export default function RandomUser() {
       >
         랜덤 뽑기
       </button>
-
-     
     </div>
   );
 }
