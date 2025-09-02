@@ -48,7 +48,7 @@ const UnamedPost = ({url,title}) => {
                 return(
                   <tr key={i}>
                     <td>{data.id}</td>
-                    <td><Link to={`/unnamed/${data.id}`}>{data.title}</Link></td>
+                    <td><Link to={`${url}/${data.id}`}>{data.title}</Link></td>
                     {
                       url === '/post' ?
                       <td>{data.user.username}</td>
