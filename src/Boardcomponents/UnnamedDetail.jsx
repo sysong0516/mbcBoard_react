@@ -94,7 +94,6 @@ const UnnamedDetail = () => {
           <span>&nbsp;<FontAwesomeIcon icon={faThumbsUp} />&nbsp;{likeCount}</span>
         </span>
         <hr />
-<<<<<<< HEAD
         <div dangerouslySetInnerHTML={{ __html: board.content }} />
         <button onClick={() => {
           axiosInstance.get(`/boardlike?id=${board.id}`)
@@ -104,10 +103,6 @@ const UnnamedDetail = () => {
               console.log(error)
             })
         }}>
-=======
-        <p>{board.content}</p>
-        <button onClick={onClickLike}>
->>>>>>> develop
           &nbsp;<FontAwesomeIcon icon={faThumbsUp} />
         </button>
         <hr />
