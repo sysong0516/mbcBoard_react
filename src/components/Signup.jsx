@@ -37,6 +37,7 @@ const Signup = () => {
             .then(response => {
               console.log(response.data);
               alert(response.data);
+              goIndex();
             }).catch(error => {
               console.log(error);
               let msg = '';
