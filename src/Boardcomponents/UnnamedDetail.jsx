@@ -5,6 +5,7 @@ import axiosInstance from "../axiosInstance";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp } from "@fortawesome/free-solid-svg-icons/faThumbsUp";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
+import localTime from "../localTime";
 
 
 const UnnamedDetail = () => {
@@ -65,7 +66,8 @@ const UnnamedDetail = () => {
     <div className="unnameddetail-container">
       <div className="unnameddetail-card">
         <h3>{board.title}</h3>
-        <span><FontAwesomeIcon icon={faEye} />&nbsp;{board.cnt}&nbsp;|
+        <span>{localTime(board.createDate)}&nbsp;|&nbsp;
+          <span><FontAwesomeIcon icon={faEye} />&nbsp;{board.cnt}&nbsp;|</span>
           <span>&nbsp;<FontAwesomeIcon icon={faThumbsUp} />&nbsp;{board.likes}</span>
         </span>
         <hr />
