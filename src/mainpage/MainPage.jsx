@@ -2,11 +2,18 @@ import OffcanvasDemo from "../components/OffcanvasDemo";
 import UnamedPost from "../maincomponents/UnamedPost";
 import UseNavi from "../UseNavi";
 
+import RouletteIcon from "../components/RouletteIcon";
+
+
 import "./MainPage.css";
 
 
-const MainPage = ( ) => {
-  const {goTo} = UseNavi();
+
+const MainPage = () => {
+  const { goTo } = UseNavi();
+  const handleRoulette = () => {
+    goTo('/randomuser');
+  };
 
   return(
     <div className="mainpage-container">
@@ -16,8 +23,7 @@ const MainPage = ( ) => {
       <div className="mainpage-card">
         <UnamedPost url={'/unnamed'} title={'익명 게시판'} />
       </div>
-      
-      <button className="mainpage-btn" onClick={() => goTo('/randomuser')}>추첨</button>
+      <RouletteIcon onClick={handleRoulette} />
     </div>
   )
 }

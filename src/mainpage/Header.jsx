@@ -18,6 +18,7 @@ const Header = ({ auth, setAuth }) => {
         <Link to="/">채팅</Link>
         <Link to="/post">공부 게시판</Link>
         <Link to="/unnamed">익명 게시판</Link>
+        
           
         {auth ? (
           <div className="header-auth">

@@ -26,7 +26,8 @@ import SentMessage from './message-components/SentMessage';
 import ReceivedMessage from './message-components/ReceivedMessage';
 import WriteMessage from './message-components/WriteMessage';
 import ProtectedRoute from './ProtectedRoute';
-import BestPost from './maincomponents/BestPost';
+import ScrollToTopButton from './components/ScrollToTopButton';
+import RouletteIcon from './components/RouletteIcon';
 
 function App() {
   const [test, setTest] = useState();
@@ -67,6 +68,8 @@ function App() {
           </Routes>
         </div>
       </div>
+  
+  <ScrollToTopButton />
       {location.pathname === "/" && <Footer />}
     </div>
   )
