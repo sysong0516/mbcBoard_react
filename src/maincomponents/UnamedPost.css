@@ -53,13 +53,14 @@
 .unnamed th {
   background: #ffe4ec;
   color: #b03060;
+  border-radius: 5px;
 }
 .unnamed td {
   color: #333;
 }
 .unnamed a {
-  color: #1976d2;
-  text-decoration: underline;
+  color: #37a3d4;
+  text-decoration:none;
   font-weight: 500;
 }
 .unnamed tr:last-child td {

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axiosInstance from "../axiosInstance";
 import UseNavi from "../UseNavi";
+import PostEditor from "../components/PostEditor";
 
 const PostBoard = () => {
   const {goTo} = UseNavi();
@@ -18,13 +19,17 @@ const PostBoard = () => {
     })
   };
 
+  const onEditorChange = (html) => {
+    setPost({
+      ...post,
+      content: html
+    });
+  };
+
   return(
     <div>
-      <label for="title">제목&nbsp;&nbsp;</label>
-      <input type="text" name="title"  onChange={onChangeHandler}/> <br />
-      <label for="content">내용&nbsp;&nbsp;</label>
-      <textarea name="content" onChange={onChangeHandler} />
-      <div>
+      <PostEditor value={post.content} onChange={onEditorChange} />
+      <div style={{marginTop:'16px'}}>
         <button onClick={() => {
           axiosInstance.post('/post/write', post)
             .then(response => {

@@ -1,0 +1,45 @@
+.editor-wrapper {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.toolbar {
+  display: flex;
+  gap: 8px;
+  padding: 6px 10px;
+  border-bottom: 1px solid #eee;
+  background: #fafafa;
+}
+
+.toolbar button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.toolbar button:hover {
+  background: #f0f0f0;
+}
+
+.toolbar button.active {
+  background: #e5e5e5;
+  font-weight: bold;
+}
+
+.tiptap {
+  min-height: 300px;
+  padding: 12px;
+  line-height: 1.6;
+  font-size: 15px;
+  outline: none;
+}
+
+.tiptap p {
+  margin: 0 0 10px 0;
+}
