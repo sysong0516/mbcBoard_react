@@ -28,6 +28,7 @@ import WriteMessage from './message-components/WriteMessage';
 import ProtectedRoute from './ProtectedRoute';
 import ScrollToTopButton from './components/ScrollToTopButton';
 import RouletteIcon from './components/RouletteIcon';
+import BestPost from './maincomponents/BestPost';
 
 function App() {
   const [test, setTest] = useState();
@@ -44,6 +45,7 @@ function App() {
           {/* <h1 className="app-title">{test }</h1> */}
           <Routes>
             <Route path='/' element={<MainPage />} />
+            <Route path='/hot' element={<BestPost  />} />
             <Route path='/login' element={<Login setAuth={setAuth} />} />
             <Route path='/signup' element={<Signup />} />
             <Route path='/unnamed' element={<Unnamed />} />

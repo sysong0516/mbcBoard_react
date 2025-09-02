@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import Pagination from "../btncomponents/Pagination";
 import { Link } from "react-router-dom";
 import axiosInstance from "../axiosInstance";
+import localTime from "../localTime";
 
 const Post = () => {
   const {goTo} = UseNavi();
@@ -55,6 +56,7 @@ const Post = () => {
               <th>번호</th>
               <th>제목</th>
               <th>작성자</th>
+              <th>작성일</th>
             </tr>
           </thead>
           <tbody>
@@ -65,12 +67,13 @@ const Post = () => {
                     <td>{post.id}</td>
                     <td><Link to = {`/post/${post.id}`}>{post.title}</Link></td>
                     <td>{post.user.username}</td>
+                    <td>{localTime(post.createDate)}</td>
                   </tr>
                 );
               })
             ) : (
               <tr>
-                <td colSpan="3">게시글이 없습니다.</td>
+                <td colSpan="4">게시글이 없습니다.</td>
               </tr>
             )}
           </tbody>
