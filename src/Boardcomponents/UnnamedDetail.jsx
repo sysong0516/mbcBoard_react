@@ -14,6 +14,8 @@ const UnnamedDetail = () => {
   const { id } = useParams();
   const [loading, setLoading] = useState(true);
   const [userInfo, setUserInfo] = useState(null);
+  const [liked, setLiked] = useState(true);
+  const [likeCount ,setLikeCount] = useState([]);
 
   const [editingReplyId, setEditingReplyId] = useState(null); // 수정 중인 댓글 ID
   const [editContent, setEditContent] = useState(""); // 수정 내용
@@ -26,6 +28,7 @@ const UnnamedDetail = () => {
         console.log(error)
       });
     fetchPost(); // 처음 마운트될 때 데이터 불러오기
+    getLikes();
   }, []);
 
   const fetchPost = async () => {
@@ -57,6 +60,26 @@ const UnnamedDetail = () => {
     return `${month}-${day} ${hours}:${minutes}`;
   }
 
+   const onClickLike = async () => {
+    const { data } = await axiosInstance.post(`/unnamed/${id}/like`);
+    setLiked(data.liked);
+    setLikeCount(data.likeCount);
+    if(data.liked) {
+      alert("👍 했습니다")
+    } else {
+      alert("👍 취소했습니다")
+    }
+  };
+
+  const getLikes = async() => {
+    axiosInstance.get(`/unnamedlike?postId=${id}`)
+      .then(response => {
+        setLikeCount(response.data)
+      }).catch(error => {
+        console.log(error)
+      })
+  }
+
   if (loading)
     return <h1>로딩중 입니다....</h1>
   if (!board)
@@ -68,18 +91,11 @@ const UnnamedDetail = () => {
         <h3>{board.title}</h3>
         <span>{localTime(board.createDate)}&nbsp;|&nbsp;
           <span><FontAwesomeIcon icon={faEye} />&nbsp;{board.cnt}&nbsp;|</span>
-          <span>&nbsp;<FontAwesomeIcon icon={faThumbsUp} />&nbsp;{board.likes}</span>
+          <span>&nbsp;<FontAwesomeIcon icon={faThumbsUp} />&nbsp;{likeCount}</span>
         </span>
         <hr />
         <p>{board.content}</p>
-        <button onClick={() => {
-          axiosInstance.get(`/boardlike?id=${board.id}`)
-            .then(response => {
-              setBoard(response.data)
-            }).catch(error => {
-              console.log(error)
-            })
-        }}>
+        <button onClick={onClickLike}>
           &nbsp;<FontAwesomeIcon icon={faThumbsUp} />
         </button>
         <hr />
