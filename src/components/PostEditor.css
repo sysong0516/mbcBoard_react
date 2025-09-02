@@ -1,0 +1,89 @@
+.editor-title {
+  width: 100%;
+  font-size: 1.25rem;
+  font-weight: bold;
+  border: none;
+  border-bottom: 2px solid #e5e5e5;
+  padding: 12px 8px 8px 8px;
+  margin-bottom: 8px;
+  background: transparent;
+  outline: none;
+  color: #222;
+}
+.editor-title:focus {
+  border-bottom: 2px solid #1976d2;
+}
+
+.editor-submit-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+}
+.editor-submit-btn {
+  background: #1976d2;
+  color: #fff;
+  font-size: 1.15rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 14px 48px;
+  box-shadow: 0 2px 8px rgba(40,40,60,0.08);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.editor-submit-btn:hover {
+  background: #145ea8;
+}
+.editor-wrapper {
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  font-family: 'Noto Sans KR', sans-serif;
+  overflow: hidden;
+  width: 1000px;
+  margin: 40px auto 0 auto;
+  display: block;
+}
+
+/* 툴바 */
+.toolbar {
+  display: flex;
+  gap: 6px;
+  padding: 6px 10px;
+  border-bottom: 1px solid #eee;
+  background: #f9f9f9;
+}
+
+.toolbar button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 6px 8px;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #333;
+}
+
+.toolbar button:hover {
+  background: #f0f0f0;
+}
+
+.toolbar button.active {
+  background: #e3f2fd;
+  color: #1976d2;
+  font-weight: bold;
+}
+
+/* 본문 영역 */
+.tiptap {
+  min-height: 400px;
+  padding: 16px;
+  font-size: 15px;
+  line-height: 1.7;
+  outline: none;
+}
+
+.tiptap p {
+  margin: 0 0 14px 0;
+}
