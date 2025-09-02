@@ -24,15 +24,16 @@ const WriteMessage = () => {
       content: content,
      })
      .then(response => {
-      console.log(response.data)
-      setContent(response.data)    
+      alert(response.data.message)  
+
+       // 전송 완료 후 보낸 메시지 페이지로 이동
+    navigate('/message/sentMessage');
       }).catch(error => {
         console.log(error)
       })
 
 
-    // 전송 완료 후 보낸 메시지 페이지로 이동
-    navigate('/message/sentMessage');
+   
   };
 
   return(

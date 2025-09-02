@@ -59,11 +59,11 @@ function App() {
             <Route path='/privacy' element={<Privacy />} />
             <Route path='/terms' element={<Terms />} /> 
 
-            <Route path='/message' element={<Message/>}>
-              <Route path="write" element={<WriteMessage/>} />
-              <Route index element={<ReceivedMessage/>} />
-              <Route path="sentMessage" element={<SentMessage/>} />
-              <Route path="receivedMessage" element={<ReceivedMessage/>} />
+            <Route path='/message' element={<ProtectedRoute auth={auth}><Message/></ProtectedRoute>}>
+              <Route path="write" element={<ProtectedRoute auth={auth}><WriteMessage/></ProtectedRoute>} />
+              <Route index element={<ProtectedRoute auth={auth}><ReceivedMessage/></ProtectedRoute>} />
+              <Route path="sentMessage" element={<ProtectedRoute auth={auth}><SentMessage/></ProtectedRoute>} />
+              <Route path="receivedMessage" element={<ProtectedRoute auth={auth}><ReceivedMessage/></ProtectedRoute>} />
             </Route>
             <Route path='/terms' element={<Terms />} />
           </Routes>
