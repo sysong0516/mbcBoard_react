@@ -15,7 +15,7 @@ const Header = ({ auth, setAuth }) => {
       <nav className="nav">
         <Link to="/message">쪽지</Link>
         <Link to="/hot">인기글</Link>
-        <Link to="/">채팅</Link>
+        
         <Link to="/post">공부 게시판</Link>
         <Link to="/unnamed">익명 게시판</Link>
         
