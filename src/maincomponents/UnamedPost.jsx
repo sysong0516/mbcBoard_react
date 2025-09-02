@@ -24,7 +24,7 @@ const UnamedPost = ({url,title}) => {
         {
           url === '/unnamed' || url === '/post' ?
           <button onClick={() => {
-            goTo('/unnamed')
+            goTo(url)
           }}>더보기&gt;</button>
           : ""
         }
