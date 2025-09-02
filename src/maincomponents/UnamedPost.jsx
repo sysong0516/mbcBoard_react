@@ -21,16 +21,14 @@ const UnamedPost = ({url,title}) => {
   return(
     <div>
       <div className="unnamed">
-        <div className="unnamed-header">
-          <h2>{title}</h2>
-          {
-            url === '/unnamed' || url === '/post' ?
-            <button onClick={() => {
-              goTo(url)
-            }}>더보기&gt;</button>
-            : ""
-          }
-        </div>
+        <h2>{title}</h2>
+        {
+          url === '/unnamed' || url === '/post' ?
+          <button onClick={() => {
+            goTo(url)
+          }}>더보기&gt;</button>
+          : ""
+        }
         <table>
           <thead>
             <tr>
@@ -51,7 +49,7 @@ const UnamedPost = ({url,title}) => {
                 return(
                   <tr key={i}>
                     <td>{data.id}</td>
-                    <td><Link to={`/unnamed/${data.id}`}>{data.title}</Link></td>
+                    <td><Link to={`${url}/${data.id}`}>{data.title}</Link></td>
                     {
                       url === '/post' ?
                       <td>{data.user.username}</td>
