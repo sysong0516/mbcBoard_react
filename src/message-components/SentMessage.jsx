@@ -1,23 +1,25 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import axiosInstance from "../axiosInstance";
+import { useLocation } from "react-router-dom";
 
 const SentMessage = () => {
   const [messages, setMessages] = useState([]);
   const [show, setShow] = useState(false);
   const [select, setSelect] = useState([]);
+  const location = useLocation();
 
   useEffect(() => {
     // 보낸 메세지 불러오기
     axiosInstance.get('/messages/sent')
     .then(response => {
-      setMessages(response.data);
+      setMessages([...response.data]);
 
     })
     .catch(error => {
       console.error(error);
     })
-  },[]);
+  },[location.pathname]);
 
   const showHandle = () =>{
     setShow(true);
@@ -53,13 +55,19 @@ const SentMessage = () => {
       <button onClick={show ? deleteHandle : showHandle}>삭제</button>
 
       <ul>
-        {messages.map( (msg,i) => {
-          return(
-             <li key={msg.id}>
-            {show ? <input type="checkbox" onChange={()=>selectHandle(msg.id)}/> : <></>}<p>받는 사람 : {msg.receiverName}<br/>내용 : {msg.content}</p>
-            </li>
-          );
-        })}
+        {messages.length === 0 ? 
+        <p>보낸 메세지가 없습니다.</p>
+        :
+         
+         (messages.map( (msg,i) => {
+            return(
+              <li key={msg.id}>
+              {show ? <input type="checkbox" onChange={()=>selectHandle(msg.id)}/> : <></>}<p>받는 사람 : {msg.receiverName}<br/>내용 : {msg.content}</p>
+              </li>
+            );
+          }))
+        }
+        
 
       </ul>
 
