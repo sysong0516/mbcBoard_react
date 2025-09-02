@@ -90,6 +90,7 @@ const UnnamedDetail = () => {
               <th>작성자</th>
               <th>내용</th>
               <th>작성일</th>
+              <th>수정삭제</th>
             </tr>
           </thead>
           <tbody>
@@ -97,7 +98,7 @@ const UnnamedDetail = () => {
               board.replyList.map((reply, i) => (
                 <tr key={i} className="postdetail-reply">
                   {
-                    userInfo == reply.user.id ? <td>나 : </td> : <td>익명 : </td>
+                    userInfo == reply.user.id ? <td>나</td> : <td>익명</td>
                   }
                   {editingReplyId === reply.id ? (
                     <>

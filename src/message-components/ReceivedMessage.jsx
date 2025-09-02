@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axiosInstance from "../axiosInstance";
 import { useLocation } from "react-router-dom";
 import localTime from "../localTime";
+import "./ReceiverMessage.css"
 
 const ReceivedMessage = () => {
   const [messages, setMessages] = useState([]); // 메세지들이라서 배열 형태로
@@ -53,12 +54,12 @@ const ReceivedMessage = () => {
   
 
   return(
-    <div>
-
-      <h2>받은 메세지</h2>
-      <button onClick={show ? deleteHandle : showHandle}>삭제</button>
-
-      <ul>
+    <div className="sent-container">
+      <div className="sent-message-header">
+        <h2>받은 메세지</h2>
+        <button className="delete-btn" onClick={show ? deleteHandle : showHandle}>삭제</button>
+      </div>
+      <ul className="message-list">
         {messages.length === 0 ?
         <p>받은 메세지가 없습니다.</p>
         :

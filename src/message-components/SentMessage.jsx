@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import axiosInstance from "../axiosInstance";
 import { useLocation } from "react-router-dom";
 import localTime from "../localTime";
+import "./SentMessage.css";
 
 const SentMessage = () => {
   const [messages, setMessages] = useState([]);
@@ -50,12 +51,14 @@ const SentMessage = () => {
   };
 
   return(
-   <div>
+   <div className="sent-container">
 
+    <div className="sent-message-header">
       <h2>보낸 메세지</h2>
-      <button onClick={show ? deleteHandle : showHandle}>삭제</button>
-
-      <ul>
+      <button className="delete-btn" onClick={show ? deleteHandle : showHandle}>삭제</button>
+    </div>
+    
+      <ul className="message-list">
         {messages.length === 0 ? 
         <p>보낸 메세지가 없습니다.</p>
         :

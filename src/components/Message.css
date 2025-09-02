@@ -1,0 +1,88 @@
+*{
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.menu {
+  max-width: 70vw;
+  margin: 5vh auto;
+  padding: 3vh 2vw;
+  background: #fff0f5;
+  border-radius: 2vw;
+  box-shadow: 0 1vh 2vh rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+.menu-top {
+  display: flex;
+  justify-content: flex-end; 
+  gap: 1.5vw;
+  margin-bottom: 4vh;
+}
+
+
+.menu-top a {
+  padding: 1.2vh 2vw;
+  text-decoration: none;
+  color: white;
+  background: #ff69b4;   
+  border-radius: 1vw;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.menu-top a:hover {
+  background: #ff1493;   
+  transform: translateY(-0.4vh);
+}
+
+
+.menu-top button {
+  padding: 1.2vh 2.5vw;
+  background: #ff69b4;   
+  border: none;
+  border-radius: 1vw;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+.menu-top button:hover {
+  background: #ff1493;   
+  transform: translateY(-0.4vh) scale(1.05);
+}
+
+
+.message-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2vh 2vw;
+  margin-bottom: 2vh;
+  background: white;
+  border-radius: 1vw;
+  box-shadow: 0 0.4vh 1vh rgba(0, 0, 0, 0.08);
+  font-size: 1rem;
+}
+
+/* 삭제 버튼 */
+.delete-button {
+  background: #ff4d4f;
+  color: white;
+  border: none;
+  border-radius: 0.8vw;
+  padding: 1vh 2vw;
+  cursor: pointer;
+  transition: 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.delete-button:hover {
+  background: #d9363e;
+  transform: scale(1.05);
+}
