@@ -67,7 +67,7 @@ const ReceivedMessage = () => {
         (messages.map( (msg,i)=>{
           return(
             <li key={msg.id} >
-              {show ? <input type="checkbox" onChange={()=>selectHandle(msg.id)}/> : <></> }<p>보낸 사람 : {msg.sender.username}<br/>내용 : {msg.content}<br/><p>날짜 : {localTime(msg.createDate)}</p></p>
+              {show ? <input type="checkbox" onChange={()=>selectHandle(msg.id)}/> : <></> }<p>보낸 사람 : {msg.sender.username}<br/>내용 : {msg.content}<br/>날짜 : {localTime(msg.createDate)}</p>
             </li>
           );
         }))   

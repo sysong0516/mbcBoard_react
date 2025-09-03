@@ -14,67 +14,67 @@ const SentMessage = () => {
   useEffect(() => {
     // 보낸 메세지 불러오기
     axiosInstance.get('/messages/sent')
-    .then(response => {
-      setMessages([...response.data]);
+      .then(response => {
+        setMessages([...response.data]);
 
-    })
-    .catch(error => {
-      console.error(error);
-    })
-  },[location.pathname]);
+      })
+      .catch(error => {
+        console.error(error);
+      })
+  }, [location.pathname]);
 
-  const showHandle = () =>{
+  const showHandle = () => {
     setShow(true);
   };
 
   const selectHandle = (id) => {
     setSelect(prev => {
-      return prev.includes(id) ? 
-      prev.filter(i => i !== id)
-      :
-      [...prev,id]
+      return prev.includes(id) ?
+        prev.filter(i => i !== id)
+        :
+        [...prev, id]
     })
   };
 
   const deleteHandle = () => {
-    axiosInstance.delete('/messages/delete/sender',{
-      data : select
+    axiosInstance.delete('/messages/delete/sender', {
+      data: select
     })
-    .then(response => {
-      alert('삭제 완료 ');
+      .then(response => {
+        alert('삭제 완료 ');
 
-      window.location.reload();
-    }).catch(error => {
-      console.error(error);
-      alert('삭제 실패');
-    })
+        window.location.reload();
+      }).catch(error => {
+        console.error(error);
+        alert('삭제 실패');
+      })
   };
 
-  return(
-   <div className="sent-container">
+  return (
+    <div className="sent-container">
 
-    <div className="sent-message-header">
-      <h2>보낸 메세지</h2>
-      <button className="delete-btn" onClick={show ? deleteHandle : showHandle}>삭제</button>
-    </div>
-    
+      <div className="sent-message-header">
+        <h2>보낸 메세지</h2>
+        <button className="delete-btn" onClick={show ? deleteHandle : showHandle}>삭제</button>
+      </div>
+
       <ul className="message-list">
-        {messages.length === 0 ? 
-        <p>보낸 메세지가 없습니다.</p>
-        :
-         
-         (messages.map( (msg,i) => {
-            return(
+        {messages.length === 0 ?
+          <p>보낸 메세지가 없습니다.</p>
+          :
+
+          (messages.map((msg, i) => {
+            return (
               <li key={msg.id}>
-              {show ? <input type="checkbox" onChange={()=>selectHandle(msg.id)}/> : <></>}
-              <p>받는 사람 : {msg.receiverName}<br/>
-              내용 : {msg.content}<br/><p>
-                날짜 : {localTime(msg.createDate)}</p></p>
+                {show ? <input type="checkbox" onChange={() => selectHandle(msg.id)} /> : <></>}
+                <p>받는 사람 : {msg.receiverName}<br />
+                  내용 : {msg.content}<br />
+                  날짜 : {localTime(msg.createDate)}</p>
               </li>
             );
           }))
         }
-        
+
 
       </ul>
 
