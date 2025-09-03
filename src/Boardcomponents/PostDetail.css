@@ -1,253 +1,210 @@
-
-.postdetail-buttons {
-  display: flex;
-  flex-direction: row;
-  gap: 12px;
-  margin: 12px 0;
-}
-
-/* PostDetail 중앙 정렬 및 카드 스타일 */
-.postdetail-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 80vh;
-}
-
-.postdetail-card {
-  background: #fff6fa;
-  border-radius: 18px;
-  box-shadow: 0 4px 16px rgba(220, 120, 180, 0.12);
-  padding: 32px 24px;
-  width: 720px;
-  max-width: 95vw;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.postdetail-buttons {
-  display: flex;
-  flex-direction: row;
-  gap: 12px;
-  margin: 12px 0;
-}
-
-.postdetail-reply {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  min-height: 10px;
-}
-
-.postdetail-reply table {
-  width: 100%;
-  margin-bottom: 16px;
-  border-collapse: collapse;
-}
-.postdetail-reply th, .postdetail-reply td {
-  border-bottom: 1px solid #e0b7d7;
-  padding: 8px;
-  text-align: center;
-}
-.postdetail-reply th {
-  background: #ffe4ec;
-  color: #b03060;
-}
-
-
-/* 댓글 테이블 전체 스타일 */
-/* PostDetail 중앙 정렬 및 카드 스타일 */
-.postdetail-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 80vh;
-}
-
-.postdetail-card {
-  background: #fff6fa;
-  border-radius: 18px;
-  box-shadow: 0 4px 16px rgba(220, 120, 180, 0.12);
-  padding: 32px 24px;
-  width: 720px;
-  max-width: 95vw;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* 포스트 버튼 영역 */
-.postdetail-buttons {
-  display: flex;
-  flex-direction: row;
-  gap: 12px;
-  margin: 12px 0;
-}
-
-/* ---------------------- 댓글 테이블 ---------------------- */
-.postdetail-card table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 16px;
-}
-
-.postdetail-card th,
-.postdetail-card td {
-  padding: 10px 12px;
-  text-align: center;
-  border-bottom: 1px solid #f0c1dc;
-  font-size: 14px;
-}
-
-.postdetail-card th {
-  background-color: #ffe4ec;
-  color: #b03060;
-  font-weight: 600;
-}
-
-/* 댓글 내용 td */
-.postdetail-card td {
-  vertical-align: top;
-}
-
-/* 댓글 행 */
-.postdetail-reply {
-  transition: background-color 0.2s;
-}
-
-.postdetail-reply:hover {
-  background-color: #fff0f5;
-  border-radius: 8px;
-}
-
-/* ---------------------- 댓글 수정 모드 ---------------------- */
-.reply-edit-area {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.postdetail-reply textarea {
-  width: 100%;
-  min-height: 60px;
-  padding: 6px;
-  margin-bottom: 6px;
-  border: 1px solid #d6a5c9;
-  border-radius: 6px;
-  font-size: 14px;
-  resize: vertical;
-}
-
-/* 수정/취소 버튼 */
-.reply-save-btn {
-  background-color: #4caf50;
-  color: #fff;
-  padding: 6px 12px;
-  border-radius: 6px;
-  font-weight: 500;
-  cursor: pointer;
-  border: none;
-  transition: all 0.2s;
-}
-
-.reply-save-btn:hover {
-  background-color: #388e3c;
-}
-
-.reply-cancel-btn {
-  background-color: #f44336;
-  color: #fff;
-  padding: 6px 12px;
-  border-radius: 6px;
-  font-weight: 500;
-  cursor: pointer;
-  border: none;
-  transition: all 0.2s;
-}
-
-.reply-cancel-btn:hover {
-  background-color: #d32f2f;
-}
-
-/* ---------------------- 일반 댓글 버튼 ---------------------- */
 .reply-action {
-  display: flex;
-  gap: 6px;
-  justify-content: center;
-  align-items: center;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	align-items: center;
+		gap: 12px;
+}
+/*  */
+.postdetail-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	min-height: 80vh;
 }
 
-.reply-edit-btn {
-  background-color: #f5c1e0;
-  color: #800040;
-  padding: 4px 10px;
-  border-radius: 6px;
-  font-size: 12px;
-  font-weight: 500;
-  cursor: pointer;
-  border: none;
-  transition: all 0.2s;
-}
 
-.reply-edit-btn:hover {
-  background-color: #e091c7;
-  color: #fff;
-}
-
-.reply-delete-btn {
-  background-color: #f5c1e0;
-  color: #800040;
-  padding: 4px 10px;
-  border-radius: 6px;
-  font-size: 12px;
-  font-weight: 500;
-  cursor: pointer;
-  border: none;
-  transition: all 0.2s;
-}
-
-.reply-delete-btn:hover {
-  background-color: #e091c7;
-  color: #fff;
-}
-
-/* ---------------------- 댓글 입력창 & 등록 ---------------------- */
-textarea.reply-input {
+.postdetail-card {
   width: 100%;
-  min-height: 80px;
-  padding: 10px;
-  margin-top: 12px;
-  margin-bottom: 8px;
-  border: 1px solid #d6a5c9;
-  border-radius: 8px;
-  font-size: 14px;
-  resize: vertical;
+  max-width: 800px;
+  margin: auto;
+	
+	background: #fff6fa;
+	border-radius: 18px;
+	box-shadow: 0 4px 16px rgba(220, 120, 180, 0.12);
+	padding: 32px 24px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	
 }
 
-button.reply-submit-btn {
-  padding: 8px 16px;
-  border: none;
-  border-radius: 8px;
-  background-color: #b03060;
-  color: #fff;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.2s;
+.postdetail-meta {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 24px;
+	font-size: 15px;
+	color: #b03060;
+	margin-bottom: 8px;
+	width: 100%;
+	justify-content: flex-start;
+}
+.postdetail-meta span {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	min-width: 120px;
 }
 
-button.reply-submit-btn:hover {
-  background-color: #800040;
+.postdetail-buttons {
+	display: flex;
+	gap: 15px;
+	margin: 12px 0;
+}
+.postdetail-buttons button {
+	background: #b03060;
+	color: #fff;
+	border: none;
+	border-radius: 6px;
+	padding: 8px 18px;
+	font-size: 15px;
+	cursor: pointer;
+	font-weight: bold;
+	transition: background 0.2s;
+}
+.postdetail-buttons button:hover {
+	background: #a02050;
 }
 
-/* 댓글 없을 때 메시지 */
-.postdetail-card p {
-  margin: 12px 0;
-  font-style: italic;
-  color: #888;
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-top: 16px;
+	table-layout: fixed;
+}
+tr{
+  border-bottom: 1px solid #f0c1dc;
+}
+th {
+	background-color: #ffe4ec;
+	color: #b03060;
+	font-weight: 600;
+	text-align: center;
+}
+th:nth-child(1) { width: 100px; }
+th:nth-child(2) { width: 320px; }
+th:nth-child(3) { width: 140px; }
+th:nth-child(4), th:nth-child(5) { width: 50px; }
+td:nth-child(1) { text-align: left; }
+td:nth-child(2), td:nth-child(3) { text-align: center;}
+td:nth-child(4), td:nth-child(5) { text-align: right; }
+td.reply-action {
+	text-align: right;
+	width: 100%;
+}
+
+
+
+th, td {
+	padding: 12px 10px;
+	font-size: 15px;
+	
+	text-align: center;
+}
+
+
+td {
+	background: #fff;
+	color: #333;
+}
+.postdetail-reply {
+  width: 100%;
+	background: #fff;
+	border-radius: 8px;
+	box-shadow: 0 1px 4px rgba(220, 120, 180, 0.08);
+	transition: background-color 0.2s, box-shadow 0.2s;
+}
+.postdetail-reply:hover {
+	background-color: #ffe4ec;
+	box-shadow: 0 2px 8px rgba(220, 120, 180, 0.12);
+}
+.reply-edit-area {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+}
+.postdetail-reply textarea {
+	width: 100%;
+	min-height: 120px;
+	padding: 6px;
+	margin-bottom: 6px;
+	border: 1px solid #d6a5c9;
+	border-radius: 6px;
+	font-size: 14px;
+  resize: none;
+	
+}
+
+.reply-save-btn {
+	background-color: #5c8cd9;
+	color: #fff;
+	padding: 6px 12px;
+	border-radius: 6px;
+	font-weight: 500;
+	cursor: pointer;
+	border: none;
+	transition: all 0.2s;
+}
+.reply-save-btn:hover {
+	background-color: #5552b8;
+}
+.reply-cancel-btn {
+	background-color: #f44336;
+	color: #fff;
+	padding: 6px 12px;
+	border-radius: 6px;
+	font-weight: 500;
+	cursor: pointer;
+	border: none;
+	transition: all 0.2s;
+}
+.reply-cancel-btn:hover {
+	background-color: #c62828;
+}
+.reply-edit-btn, .reply-delete-btn {
+	background: #b03060;
+	color: #fff;
+	border: none;
+	border-radius: 6px;
+	padding: 3px 8px;
+	font-size: 14px;
+	cursor: pointer;
+	font-weight: bold;
+
+
+	transition: background 0.2s;
+	white-space: nowrap;
+	display: inline-flex;
+	align-items: center;
+}
+
+.reply-edit-btn:hover, .reply-delete-btn:hover {
+	background: #a02050;
+}
+.reply-input {
+	width: 100%;
+	min-height: 48px;
+	padding: 8px;
+	border: 1px solid #d6a5c9;
+	border-radius: 6px;
+	font-size: 15px;
+	margin-top: 12px;
+	margin-bottom: 8px;
+}
+.reply-submit-btn {
+	background: #b03060;
+	color: #fff;
+	border: none;
+	border-radius: 6px;
+	padding: 8px 24px;
+	font-size: 15px;
+	cursor: pointer;
+	font-weight: bold;
+	margin-bottom: 16px;
+	transition: background 0.2s;
+}
+.reply-submit-btn:hover {
+	background: #a02050;
 }
