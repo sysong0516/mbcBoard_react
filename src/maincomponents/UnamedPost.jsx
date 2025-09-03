@@ -21,13 +21,16 @@ const UnamedPost = ({url,title}) => {
   return(
     <div>
       <div className="unnamed">
-        <h2>{title}</h2>
-        {
-          (url === '/unnamed' || url === '/post') &&
-          <button onClick={() => {
-            goTo(url)
-          }}>더보기&gt;</button>
-        }
+        <div className="unnamed-header">
+          <h2>{title}</h2>
+          {
+            url === '/unnamed' || url === '/post' ?
+            <button onClick={() => {
+              goTo(url)
+            }}>더보기</button>
+            : ""
+          }
+        </div>
         <table>
           <thead>
             <tr>

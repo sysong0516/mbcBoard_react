@@ -95,136 +95,133 @@ const PostDetail = () => {
     <div className="postdetail-container">
       <div className="postdetail-card">
         <h3>{post.title}</h3>
-        <span>{post.user.username}&nbsp;|&nbsp;
-          <span>{localTime(post.createDate)}</span>&nbsp;|&nbsp;
-          <span>&nbsp;<FontAwesomeIcon icon={faEye} />&nbsp;{post.cnt}&nbsp;</span> |
-          <span>&nbsp;<FontAwesomeIcon icon={faThumbsUp} />&nbsp;{likeCount}</span>
-        </span>
+        <div className="postdetail-meta">
+          <span>{post.user.username}</span>
+          <span>{localTime(post.createDate)}</span>
+          <span><FontAwesomeIcon icon={faEye} /> {post.cnt}</span>
+          <span><FontAwesomeIcon icon={faThumbsUp} /> {likeCount}</span>
+        </div>
         <hr />
         <div dangerouslySetInnerHTML={{ __html: post.content }} />
         <div className="postdetail-buttons">
-          {
-            isOwer
-              ?
-              <>
-                <button onClick={() => {
-                  goTo(`/post/modify/${id}`)
-                }}>수정</button>
-                <button onClick={() => {
-                  if (confirm('정말로 삭제하시겠습니까?')) {
-                    axiosInstance.delete(`/post?id=${post.id}`)
-                      .then(response => {
-                        alert(response.data)
-                        goTo('/post')
-                      }).catch(error => {
-                        alert('삭제 실패')
-                        console.log(error)
-                      });
-                  }
-                }}>삭제</button>
-              </>
-              : " "
-          }
-          <button onClick={onClickLike }>
-            &nbsp;<FontAwesomeIcon icon={faThumbsUp} />
+          {isOwer && (
+            <>
+              <button onClick={() => goTo(`/post/modify/${id}`)}>수정</button>
+              <button onClick={() => {
+                if (confirm('정말로 삭제하시겠습니까?')) {
+                  axiosInstance.delete(`/post?id=${post.id}`)
+                    .then(response => {
+                      alert(response.data)
+                      goTo('/post')
+                    }).catch(error => {
+                      alert('삭제 실패')
+                      console.log(error)
+                    });
+                }
+              }}>삭제</button>
+            </>
+          )}
+          <button onClick={onClickLike}>
+            <FontAwesomeIcon icon={faThumbsUp} />
           </button>
         </div>
         <hr />
         <h5>댓글 목록</h5>
-        <table>
-          <thead>
-            <tr>
-              <th>작성자</th>
-              <th>내용</th>
-              <th>작성일</th>
-              <th>수정삭제</th>
-            </tr>
-          </thead>
-          <tbody>
-            {post.replyList && post.replyList.length > 0 ? (
-              post.replyList.map((reply, i) => (
-                <tr key={i} className="postdetail-reply">
-                  <td>{reply.user.username}</td>
-                  {editingReplyId === reply.id ? (
-                    <td colSpan={3} className="reply-edit-area">
-                      <textarea
-                        value={editContent}
-                        onChange={(e) => setEditContent(e.target.value)} />
-                      <button className="reply-save-btn" onClick={() => {
-                        reply.content = document.querySelector('textarea').value
-                        reply.id = editingReplyId
-                        axiosInstance.put(`/reply/${id}`, reply)
-                          .then(response => {
-                            alert(response.data);
-                            fetchPost();
-                          }).catch(error => {
-                            alert(error.response.data);
-                            console.log(error)
-                          })
-                        setEditingReplyId(null);
-                        setEditContent("");
-                      }}>저장</button>
-                      <button className="reply-cancel-btn" onClick={handleCancel}>취소</button>
-                    </td>
-                  ) : (
-                    <><td>{reply.content}</td>
-                      <td>{formatTime(reply.createDate)}</td>
-                      <td className="reply-action">
-                        {
-                        userInfo && (userInfo === reply.user.id) && (
-                            <button className="reply-edit-btn" onClick={() => handleEditClick(reply)}>수정</button>
-                        )
-                      }
+        <div className="postdetail-reply-area">
+          <table>
+            <thead>
+              <tr>
+                <th>작성자</th>
+                <th>내용</th>
+                <th>작성일</th>
+                <th>수정</th>
+                <th>삭제</th>
+              </tr>
+            </thead>
+            <tbody>
+              {post.replyList && post.replyList.length > 0 ? (
+                post.replyList.map((reply, i) => (
+                  <tr key={i} className="postdetail-reply">
+                    {/* 작성자: 왼쪽 정렬 */}
+                    <td style={{ textAlign: 'left', fontWeight: 'bold', color: '#b03060' }}>{reply.user.username}</td>
+                    {/* 내용: 중앙 정렬 */}
+                    {editingReplyId === reply.id ? (
+                      <td colSpan={4} className="reply-edit-area" style={{ textAlign: 'center' }}>
+                        <textarea
+                          value={editContent}
+                          onChange={e => setEditContent(e.target.value)} />
+                        <button className="reply-save-btn" onClick={() => {
+                          reply.content = editContent;
+                          reply.id = editingReplyId;
+                          axiosInstance.put(`/reply/${id}`, reply)
+                            .then(response => {
+                              alert(response.data);
+                              fetchPost();
+                            }).catch(error => {
+                              alert(error.response.data);
+                              console.log(error)
+                            })
+                          setEditingReplyId(null);
+                          setEditContent("");
+                        }}>저장</button>
+                        <button className="reply-cancel-btn" onClick={handleCancel}>취소</button>
                       </td>
-                      
-                    </>
-                  )}
-                  {
-                    userInfo && (userInfo === reply.user.id) && (
-                      <td><button className="reply-delete-btn" onClick={() => {
-                        axiosInstance.delete(`/reply/${reply.id}`)
-                          .then(response => {
-                            alert(response.data);
-                            fetchPost();
-                          }).catch(error => {
-                            alert(error.response.data);
-                            console.log(error)
-                          })
-                      }}>삭제</button></td>
-                    )
-                  }
-                </tr>
-              ))
-            ) : (
-              <tr>댓글이 없습니다.</tr>
-            )}
-          </tbody>
-        </table>
-        <textarea
-          className="reply-input"
-          value={replyContent}
-          onChange={e => setReplyContent(e.target.value)}
-        />
-        <button className="reply-submit-btn" onClick={() => {
-          if (!replyContent.trim()) {
-            alert("댓글 내용을 입력해주세요.");
-            return;
-          }
-          const reply = {
-            content: replyContent
-          }
-          axiosInstance.post(`/reply/${id}`, reply)
-            .then(response => {
-              alert(response.data);
-              setReplyContent(""); // 입력값 초기화
-              fetchPost();
-            }).catch(error => {
-              console.log(error)
-            })
-        }}>댓글 등록</button>
+                    ) : (
+                      <>
+                        <td>{reply.content}</td>
+                        <td>{formatTime(reply.createDate)}</td>
+                        <td className="reply-action">
+                            {userInfo && (userInfo === reply.user.id) && (
+                              <button className="reply-edit-btn" onClick={() => handleEditClick(reply)}>수정</button>
+                            )}
+                            </td>
+                          
+                            <td>
+                            {userInfo && (userInfo === reply.user.id) && (
+                              <button className="reply-delete-btn" onClick={() => {
+                                axiosInstance.delete(`/reply/${reply.id}`)
+                                  .then(response => {
+                                    alert(response.data);
+                                    fetchPost();
+                                  }).catch(error => {
+                                    alert(error.response.data);
+                                    console.log(error)
+                                  })
+                              }}>삭제</button>
+                            )}
+                          </td>
+                            </>
+                            
+                    )}
+                  </tr>
+                ))
+              ) : (
+                <tr><td colSpan={5}>댓글이 없습니다.</td></tr>
+              )}
+            </tbody>
+          </table>
+          <textarea className="reply-input" value={replyContent} onChange={e => setReplyContent(e.target.value)}/>
+          <button className="reply-submit-btn" onClick={() => {
+            if (!replyContent.trim()) {
+              alert("댓글 내용을 입력해주세요.");
+              return;
+            }
+            const reply = {
+              content: replyContent
+            }
+            axiosInstance.post(`/reply/${id}`, reply)
+              .then(response => {
+                alert(response.data);
+                setReplyContent(""); // 입력값 초기화
+                fetchPost();
+              }).catch(error => {
+                console.log(error)
+              })
+          }}>댓글 등록</button>
+        </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default PostDetail;
