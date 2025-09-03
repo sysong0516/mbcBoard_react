@@ -10,7 +10,7 @@ const UnamedPost = ({url,title}) => {
   const [topBoard, setTopBoard] = useState([]);
   
   useEffect(() => {
-    axiosInstance.get(url, {params: {size:3}})
+    axiosInstance.get(url, (url === '/unnamed' || url === '/post') && {params: {size:3}})
       .then(response => {
         setTopBoard(response.data.content)        
       }).catch(error => {
@@ -23,11 +23,10 @@ const UnamedPost = ({url,title}) => {
       <div className="unnamed">
         <h2>{title}</h2>
         {
-          url === '/unnamed' || url === '/post' ?
+          (url === '/unnamed' || url === '/post') &&
           <button onClick={() => {
             goTo(url)
           }}>더보기&gt;</button>
-          : ""
         }
         <table>
           <thead>
@@ -35,10 +34,8 @@ const UnamedPost = ({url,title}) => {
               <th>번호</th>
               <th>제목</th>
               {
-                url === '/post' ?
+                (url === '/post' || url === '/best') &&
                 <th>작성자</th>
-                :
-                ""
               }
               <th>작성일</th>
             </tr>
@@ -49,12 +46,14 @@ const UnamedPost = ({url,title}) => {
                 return(
                   <tr key={i}>
                     <td>{data.id}</td>
-                    <td><Link to={`${url}/${data.id}`}>{data.title}</Link></td>
                     {
-                      url === '/post' ?
+                      (url === '/best' || url === '/post')?
+                      <td><Link to={`/post/${data.id}`}>{data.title}</Link></td>
+                      :<td><Link to={`/unnamed/${data.id}`}>{data.title}</Link></td>
+                    }
+                    {
+                      (url === '/post' || url === '/best') &&
                       <td>{data.user.username}</td>
-                      :
-                      ""
                     }
                     <td>{localTime(data.createDate)}</td>
                   </tr>
@@ -63,7 +62,7 @@ const UnamedPost = ({url,title}) => {
             ) : (
               <tr>
                 {
-                  url === '/post' ?
+                  url === '/post' || url === '/best' ?
                   <td colSpan="4">게시글이 없습니다.</td>
                   :
                   <td colSpan="3">게시글이 없습니다.</td>
