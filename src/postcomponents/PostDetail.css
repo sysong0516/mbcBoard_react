@@ -35,7 +35,7 @@
 	flex-wrap: wrap;
 	gap: 24px;
 	font-size: 15px;
-	color: #b03060;
+		color: #b03060;
 	margin-bottom: 8px;
 	width: 100%;
 	border-bottom: 1px solid black;
@@ -55,8 +55,8 @@
 	margin: 12px 0;
 }
 .postdetail-buttons button {
-	background: #b03060;
-	color: #fff;
+		background: #b03060;
+		color: #D5E1DF;
 	border: none;
 	border-radius: 6px;
 	padding: 8px 18px;
@@ -66,7 +66,7 @@
 	transition: background 0.2s;
 }
 .postdetail-buttons button:hover {
-	background: #a02050;
+		background: #a02050;
 }
 
 
@@ -77,11 +77,11 @@ table {
 	table-layout: fixed;
 }
 tr{
-  border-bottom: 1px solid #f0c1dc;
+	border-bottom: 1px solid #A3B6C5;
 }
 th {
-	background-color: #ffe4ec;
-	color: #b03060;
+		background-color: #ffe4ec;
+		color: #b03060;
 	font-weight: 600;
 	text-align: center;
 }

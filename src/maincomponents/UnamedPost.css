@@ -10,10 +10,10 @@
   margin: 0;
   font-size: 1.3rem;
   font-weight: bold;
-  color: #b03060;
+  color: #e2b3a3;
 }
 .unnamed-header button {
-  background: #b03060;
+  background: #e2b3a3;
   color: #fff;
   border: none;
   border-radius: 6px;
@@ -35,7 +35,7 @@
   padding: 32px 24px;
   width: 800px;
   max-width: 95vw;
-  margin: 2rem auto;
+  margin:auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -52,7 +52,7 @@
 }
 .unnamed th {
   background: #ffe4ec;
-  color: #b03060;
+  color: #a3b6c5;
   border-radius: 5px;
 }
 .unnamed td {
@@ -66,5 +66,6 @@
 .unnamed tr:last-child td {
   border-bottom: none;
 }
+
 
 

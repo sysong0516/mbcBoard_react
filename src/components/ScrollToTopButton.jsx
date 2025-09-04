@@ -15,7 +15,7 @@ const ScrollToTopButton = () => {
         zIndex: 1000,
         padding: "1rem",
         borderRadius: "50%",
-        background: "#7eb3e7ff",
+        background: "#e2b3a3",
         color: "#fff",
         border: "none",
         boxShadow: "0 2px 8px rgba(0,0,0,0.2)",
