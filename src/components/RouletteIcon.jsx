@@ -13,7 +13,9 @@ const RouletteIcon = ({ onClick }) => (
       height: "80px",
       zIndex: 1001,
       cursor: "pointer",
-      borderRadius: "50%"
+      borderRadius: "50%",
+      objectFit: "cover",
+      aspectRatio: "1 / 1"
     }}
     onClick={onClick}
   />

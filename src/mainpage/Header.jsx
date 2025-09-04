@@ -11,7 +11,7 @@ const Header = ({ auth, setAuth }) => {
   const username = sessionStorage.getItem('username')
   return(
     <header className="header">
-      <Link to="/" className="logo"><FontAwesomeIcon icon={faHouse} size="3vh"/>Pink천국</Link>
+      <Link to="/" className="logo"><FontAwesomeIcon icon={faHouse} size="2vh"/>MBC아카데미</Link>
       <nav className="nav">
         <Link to="/message">쪽지</Link>
         <Link to="/hot">인기글</Link>

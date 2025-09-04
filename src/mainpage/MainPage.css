@@ -6,12 +6,32 @@
   justify-content: center;
   min-height: 80vh;
   gap: 20px;
+    background: #e5eae9 url('../assets/bg.png') center/cover no-repeat;
+    position: relative;
+    overflow: hidden;
 }
 
-/* .mainpage-btn {
+.mainpage-container::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(229,234,233,0.7); /* 밝은 오버레이로 카드/텍스트 가독성 향상 */
+  z-index: 0;
+}
+
+.mainpage-card, .mainpage-btn, .mainpage-container > * {
+  position: relative;
+  z-index: 1;
+  border-radius: 24px;
+  box-shadow: 0 4px 24px rgba(85, 102, 115, 0.1);
+  
+}
+
+/* MainPage button with accent colors */
+.mainpage-btn {
   margin-top: 24px;
-  background: #b03060;
-  color: #fff;
+    background: #E2B3A3;
+    color: #FFFFFF;
   border: none;
   border-radius: 8px;
   padding: 12px 32px;
@@ -19,10 +39,12 @@
   font-weight: bold;
   cursor: pointer;
   transition: background 0.2s;
-} */
-/* .mainpage-btn:hover {
-  background: #a02050;
-} */
+  box-shadow: 0 2px 8px rgba(163,182,197,0.10);
+}
+.mainpage-btn:hover {
+  background: #EACACB;
+  color: #A3B6C5;
+}
 
 
 

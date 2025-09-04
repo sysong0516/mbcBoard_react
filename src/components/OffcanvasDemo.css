@@ -24,3 +24,8 @@
 .offcanvas-btn:hover {
   background-color: #e75480; /* 진한 핑크 */
 }
+.offcanvas-title{
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+}
