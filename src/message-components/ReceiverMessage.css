@@ -68,3 +68,14 @@
   transform: scale(1.2);
   accent-color: #ff66b2; 
 }
+
+.message-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3vw;          
+  font-size: 1.6vh;
+  color: #ff66b2;
+  cursor: pointer;
+  user-select: none;
+  margin-left: 35vw;   
+}

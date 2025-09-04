@@ -1,12 +1,12 @@
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import UseNavi from "../UseNavi";
+import UseNavi from "../utils/UseNavi";
 import "./Post.css";
 import { useEffect, useState } from "react";
 import Pagination from "../btncomponents/Pagination";
 import { Link } from "react-router-dom";
-import axiosInstance from "../axiosInstance";
-import localTime from "../localTime";
+import axiosInstance from "../utils/axiosInstance";
+import localTime from "../utils/localTime";
 
 const Post = () => {
   const {goTo} = UseNavi();
@@ -65,7 +65,7 @@ const Post = () => {
                 return(
                   <tr key={i}>
                     <td>{post.id}</td>
-                    <td><Link to = {`/post/${post.id}`}>{post.title}</Link></td>
+                    <td><Link to = {`/post/${post.id}`}>{post.title}{`${' '}[${post.replyList.length}]`}</Link></td>
                     <td>{post.user.username}</td>
                     <td>{localTime(post.createDate)}</td>
                   </tr>

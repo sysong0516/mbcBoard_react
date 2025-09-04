@@ -38,12 +38,14 @@
 		color: #b03060;
 	margin-bottom: 8px;
 	width: 100%;
+	border-bottom: 1px solid black;
 	justify-content: flex-start;
 }
 .postdetail-meta span {
 	display: flex;
 	align-items: center;
 	gap: 6px;
+	padding: 5px;
 	min-width: 120px;
 }
 

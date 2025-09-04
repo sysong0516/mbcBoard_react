@@ -1,6 +1,6 @@
 import { useState } from "react";
-import axiosInstance from "../axiosInstance";
-import UseNavi from "../UseNavi";
+import axiosInstance from "../utils/axiosInstance";
+import UseNavi from "../utils/UseNavi";
 import "./Signup.css";
 
 const Signup = () => {

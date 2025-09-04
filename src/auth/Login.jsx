@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import './Login.css'
-import axiosInstance from "../axiosInstance";
-import UseNavi from "../UseNavi";
+import axiosInstance from "../utils/axiosInstance";
+import UseNavi from "../utils/UseNavi";
 
 const Login = ({ setAuth }) => {
 

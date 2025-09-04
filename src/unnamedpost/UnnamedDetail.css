@@ -30,12 +30,14 @@
   margin-bottom: 8px;
   width: 100%;
   justify-content: flex-start;
+  border-bottom: 1px solid black;
 }
 .unnameddetail-meta span {
   display: flex;
   align-items: center;
   gap: 6px;
   min-width: 120px;
+  padding: 5px;
 }
 
 .unnameddetail-buttons {

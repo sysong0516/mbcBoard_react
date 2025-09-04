@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import UseNavi from "../UseNavi";
+import UseNavi from "../utils/UseNavi";
 import "./PostDetail.css";
 import { useParams } from "react-router-dom";
-import axiosInstance from "../axiosInstance";
+import axiosInstance from "../utils/axiosInstance";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp } from "@fortawesome/free-solid-svg-icons/faThumbsUp";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
-import localTime from "../localTime";
+import localTime from "../utils/localTime";
 
 const PostDetail = () => {
   const [replyContent, setReplyContent] = useState(""); // 댓글 입력값 상태
@@ -14,7 +14,7 @@ const PostDetail = () => {
   const [post, setPost] = useState([]);
   const { id } = useParams();
   const [loading, setLoading] = useState(true);
-  const [isOwer, setIsOwer] = useState(false);
+  const [isOwner, setIsOwner] = useState(false);
   const [userInfo, setUserInfo] = useState(null);
   const [liked, setLiked] = useState(true);
   const [likeCount ,setLikeCount] = useState([]);
@@ -37,7 +37,7 @@ const PostDetail = () => {
     axiosInstance.get(`/post/${id}`)
       .then(response => {
         setPost(response.data.post)
-        setIsOwer(response.data.isOwer)
+        setIsOwner(response.data.isOwner)
       }).catch(error => {
         console.log(error)
       }).finally(() => {
@@ -104,7 +104,7 @@ const PostDetail = () => {
         <hr />
         <div dangerouslySetInnerHTML={{ __html: post.content }} />
         <div className="postdetail-buttons">
-          {isOwer && (
+          {isOwner && (
             <>
               <button onClick={() => goTo(`/post/modify/${id}`)}>수정</button>
               <button onClick={() => {
@@ -121,7 +121,7 @@ const PostDetail = () => {
               }}>삭제</button>
             </>
           )}
-          <button onClick={onClickLike}>
+          <button onClick={onClickLike}>좋아요&nbsp;
             <FontAwesomeIcon icon={faThumbsUp} />
           </button>
         </div>

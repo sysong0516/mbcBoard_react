@@ -8,28 +8,60 @@
 
 .Pagination button {
   margin: 4px;
-  background: #b03060;
-  color: #fff;
-  border: none;
+  background: #ffe9f0;
+  color: #b03060;
+  border: 1px solid #b03060;
   border-radius: 6px;
   padding: 6px 16px;
   font-size: 15px;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background .2s, color .2s, box-shadow .2s, transform .15s ;
+}
+
+.Pagination button:hover:not(:disabled):not(.active) {
+  background: #ffd6e4;
 }
 
 
 .Pagination button.active {
   background: #b03060;
   color: #fff;
-  font-weight: bold;
-  border: 1px solid #b03060;
+  border:#7e1f41; /* 살짝 더 진한 테두리 */
+  box-shadow: 
+    0 0 0 2px #fff, /* 안쪽 흰색 링 */
+    0 0 0 4px #b03060; /* 바깥 브랜드색 링 */
+  transform: translateY(-1px);
 }
 
+
+/* 호버도 미세히 차이 */
+.Pagination button:hover:not(:disabled):not(.active) {
+  filter: brightness(0.95);
+}
 
 .Pagination button:disabled {
   background: #f9f0f4;
   color: #aaa;
   border: 1px solid #e0b7d7;
   cursor: not-allowed;
+}
+
+/* 키보드 포커스 접근성 */
+.Pagination button:focus-visible {
+  outline: 3px solid #fff;
+  box-shadow: 0 0 0 5px rgba(176,48,96,.35);
+}
+
+/* 비활성: 색/효과 전부 제거 */
+.Pagination button:disabled,
+.Pagination button:disabled:hover,
+.Pagination button:disabled:focus,
+.Pagination button:disabled:active {
+  background: transparent !important;   /* 배경 없음 */
+  border-color: transparent !important; /* 테두리 없음 */
+  color: #c6c6c6 !important;            /* 아이콘/문자만 옅은 회색 */
+  box-shadow: none !important;          /* 링/그림자 제거 */
+  pointer-events: none;                 /* 호버 자체 무시 */
+  opacity: 0.6;                         /* (선택) 살짝 흐리게 */
+  cursor: default;                      /* (취향) 기본 커서 */
 }
