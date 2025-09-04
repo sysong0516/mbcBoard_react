@@ -1,7 +1,8 @@
 
 import React, { useRef, useEffect } from "react";
 import "./OffcanvasDemo.css";
-import WebChat from "./WebChat";
+import WebChat from "../chat/WebChat";
+
 
 export default function OffcanvasDemo() {
   const chatRef = useRef(null);
