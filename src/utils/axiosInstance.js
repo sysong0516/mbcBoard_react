@@ -4,7 +4,8 @@ const axiosInstance = axios.create({
   baseURL: `${import.meta.env.VITE_SERVER_URL}`,
   headers: {
     'Content-Type': 'application/json; charset=utf-8'
-  }
+  },
+  withCredentials: true // 세션/쿠키 포함
 });
 
 // 요청헤더에 jwt 추가해주는 함수
@@ -19,7 +20,7 @@ function addJwtToRequest(config) {
 
 // axiosInstance로 요청하기 전 작동하는 인터셉터
 axiosInstance.interceptors.request.use(
-  (cofing) => addJwtToRequest(cofing),
+  (config) => addJwtToRequest(config),
   (error) => Promise.reject(error)
 )
 

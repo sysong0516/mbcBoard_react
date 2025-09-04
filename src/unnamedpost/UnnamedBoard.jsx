@@ -1,6 +1,6 @@
 import { useState } from "react";
-import UseNavi from "../UseNavi";
-import axiosInstance from "../axiosInstance";
+import UseNavi from "../utils/UseNavi";
+import axiosInstance from "../utils/axiosInstance";
 
 const UnnamedBoard = () => {
   const {goTo} = UseNavi();

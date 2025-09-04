@@ -1,16 +1,19 @@
 import { useEffect, useState } from "react";
 import "./UnamedPost.css";
-import UseNavi from "../UseNavi";
-import axiosInstance from "../axiosInstance";
+import UseNavi from "../utils/UseNavi";
+import axiosInstance from "../utils/axiosInstance";
 import { Link } from "react-router-dom";
-import localTime from "../localTime";
+import localTime from "../utils/localTime";
 
 const UnamedPost = ({url,title}) => {
   const {goTo} = UseNavi();
   const [topBoard, setTopBoard] = useState([]);
   
   useEffect(() => {
-    axiosInstance.get(url, (url === '/unnamed' || url === '/post') && {params: {size:3}})
+    const config = (url === '/unnamed' || url === '/post')
+      ? {params: {size:3}}
+      : {};
+    axiosInstance.get(url, config)
       .then(response => {
         setTopBoard(response.data.content)        
       }).catch(error => {
