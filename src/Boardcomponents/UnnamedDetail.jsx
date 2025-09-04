@@ -95,8 +95,8 @@ const UnnamedDetail = () => {
         <h3>{board.title}</h3>
         <div className="unnameddetail-meta">
           <span>{localTime(board.createDate)}</span>
-          <span><FontAwesomeIcon icon={faEye} /> {board.cnt}</span>
-          
+          <span><FontAwesomeIcon icon={faEye} />{board.cnt}</span>
+          <span><FontAwesomeIcon icon={faThumbsUp} />{likeCount}</span>
         </div>
         <hr />
         <div dangerouslySetInnerHTML={{ __html: board.content }} />
