@@ -1,6 +1,5 @@
-import OffcanvasDemo from "../components/OffcanvasDemo";
 import UnamedPost from "../maincomponents/UnamedPost";
-import UseNavi from "../UseNavi";
+import UseNavi from "../utils/UseNavi";
 
 import RouletteIcon from "../components/RouletteIcon";
 

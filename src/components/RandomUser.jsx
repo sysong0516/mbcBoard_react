@@ -1,7 +1,6 @@
-
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import axiosInstance from '../axiosInstance';
+import axiosInstance from '../utils/axiosInstance';
 
 export default function RandomUser() {
   const [users, setUsers] = useState([]);

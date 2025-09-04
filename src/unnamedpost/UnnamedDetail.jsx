@@ -1,11 +1,11 @@
 import { useParams } from "react-router-dom";
 import "./UnnamedDetail.css";
 import { useEffect, useState } from "react";
-import axiosInstance from "../axiosInstance";
+import axiosInstance from "../utils/axiosInstance";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp } from "@fortawesome/free-solid-svg-icons/faThumbsUp";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
-import localTime from "../localTime";
+import localTime from "../utils/localTime";
 
 
 const UnnamedDetail = () => {
@@ -93,15 +93,15 @@ const UnnamedDetail = () => {
     <div className="unnameddetail-container">
       <div className="unnameddetail-card">
         <h3>{board.title}</h3>
+        <hr />
         <div className="unnameddetail-meta">
           <span>{localTime(board.createDate)}</span>
-          <span><FontAwesomeIcon icon={faEye} /> {board.cnt}</span>
-          
+          <span><FontAwesomeIcon icon={faEye} />{board.cnt}</span>
+          <span><FontAwesomeIcon icon={faThumbsUp} />{likeCount}</span>
         </div>
-        <hr />
         <div dangerouslySetInnerHTML={{ __html: board.content }} />
         <div className="unnameddetail-buttons">
-          <button onClick={onClickLike}>
+          <button onClick={onClickLike}>좋아요&nbsp;
             <FontAwesomeIcon icon={faThumbsUp} />
           </button>
         </div>

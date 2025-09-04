@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import UseNavi from "../UseNavi";
+import UseNavi from "../utils/UseNavi";
 import { useParams } from "react-router-dom";
-import axiosInstance from "../axiosInstance";
+import axiosInstance from "../utils/axiosInstance";
 import PostEditor from "../components/PostEditor";
 
 const UpdatePost = () => {

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
-import axiosInstance from "../axiosInstance";
+import axiosInstance from "../utils/axiosInstance";
 import { useLocation } from "react-router-dom";
-import localTime from "../localTime";
+import localTime from "../utils/localTime";
 import "./ReceiverMessage.css"
 
 const ReceivedMessage = () => {

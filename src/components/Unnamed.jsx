@@ -1,12 +1,12 @@
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import UseNavi from "../UseNavi";
+import UseNavi from "../utils/UseNavi";
 import "./Unnamed.css";
 import { useEffect, useState } from "react";
 import Pagination from "../btncomponents/Pagination";
-import axiosInstance from "../axiosInstance";
+import axiosInstance from "../utils/axiosInstance";
 import { Link } from "react-router-dom";
-import localTime from "../localTime";
+import localTime from "../utils/localTime";
 
 const Unnamed = () => {
   const {goTo} = UseNavi();
