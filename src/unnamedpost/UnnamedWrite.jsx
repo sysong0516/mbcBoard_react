@@ -8,9 +8,9 @@ const UnnamedWrite = () => {
   const [post,setPost] = useState({
       'title': '',
       'content' : '',
-      'cnt' : 0,
-      'likes': 0
-  });
+      'cnt' : 0
+    });
+      
 
   const onChangeHandler = (e) => {
     setPost({

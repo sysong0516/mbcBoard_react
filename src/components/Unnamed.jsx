@@ -48,7 +48,7 @@ const Unnamed = () => {
                 return(
                   <tr key={i}>
                     <td>{board.id}</td>
-                    <td><Link to = {`/unnamed/${board.id}`}>{board.title}{`${' '}[${board.replyList.length}]`}</Link></td>
+                    <td className="title-long"><Link to = {`/unnamed/${board.id}`}>{board.title}{`${' '}[${board.replyList.length}]`}</Link></td>
                     <td>{localTime(board.createDate)}</td>
                   </tr>
                 );
