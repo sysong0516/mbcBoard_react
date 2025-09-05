@@ -54,8 +54,8 @@ const UnamedPost = ({url,title}) => {
                     <td>{data.id}</td>
                     {
                       (url === '/best' || url === '/post')?
-                      <td><Link to={`/post/${data.id}`}>{data.title}{`${' '}[${data.replyList.length}]`}</Link></td>
-                      :<td><Link to={`/unnamed/${data.id}`}>{data.title}{`${' '}[${data.replyList.length}]`}</Link></td>
+                      <td className="title-long"><Link to={`/post/${data.id}`}>{data.title}{`${' '}[${data.replyList.length}]`}</Link></td>
+                      :<td className="title-long"><Link to={`/unnamed/${data.id}`}>{data.title}{`${' '}[${data.replyList.length}]`}</Link></td>
                     }
                     {
                       (url === '/post' || url === '/best') &&

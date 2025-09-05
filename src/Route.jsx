@@ -4,6 +4,8 @@ import { lazy, Suspense } from "react"
 import ProtectedRoute from "./ProtectedRoute"
 import Login from "./auth/Login"
 import Signup from "./auth/Signup"
+import Spinner from "./Spinner"
+
 const BestPost = lazy(() => import("./maincomponents/BestPost"))
 const Unnamed = lazy(()=> import("./components/Unnamed"))
 const UnnamedDetail = lazy(()=> import("./unnamedpost/UnnamedDetail"))
@@ -24,7 +26,7 @@ const SentMessage = lazy(()=> import("./message-components/SentMessage"))
 
 const Routers = ({auth,setAuth}) => {
   return(
-    <Suspense fallback={<div>로딩중임...</div>}>
+    <Suspense fallback={<Spinner />}>
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="privacy" element={<Privacy />} />

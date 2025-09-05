@@ -65,7 +65,7 @@ const Post = () => {
                 return(
                   <tr key={i}>
                     <td>{post.id}</td>
-                    <td><Link to = {`/post/${post.id}`}>{post.title}{`${' '}[${post.replyList.length}]`}</Link></td>
+                    <td className="title-long"><Link to = {`/post/${post.id}`}>{post.title}{`${' '}[${post.replyList.length}]`}</Link></td>
                     <td>{post.user.username}</td>
                     <td>{localTime(post.createDate)}</td>
                   </tr>
